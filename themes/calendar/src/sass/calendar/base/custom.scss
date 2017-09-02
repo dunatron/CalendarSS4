@@ -293,9 +293,7 @@ body {
       text-transform: capitalize;
       font-size: 18px;
       @include breakpoint($min865) {
-        visibility: hidden;
-        opacity: 0;
-        font-size: 11px;
+        font-size: 13px;
       }
       //max-width: $width_event_wrap_inner;
     }
