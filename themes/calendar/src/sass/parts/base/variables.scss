@@ -1,0 +1,129 @@
+
+// @media queries
+//$tablet:#{$screen-sm-min})";
+//$normal:#{$screen-md-min})";
+//$wide:#{$screen-lg-min})";
+
+$min370: 370px;
+$min400: 400px;
+$min460: 460px;
+$min510: 510px;
+$min525: 525px;
+$min600: 600px;
+$min660: 660px;
+$min700: 700px;
+$max699: 699px;
+$min750: 750px;
+$min768: 768px;
+$max768: 768px;
+$min880: 880px;
+$min865: 865px;
+$min960: 960px;
+$min992: 992px;
+$max992: 992px;
+$min1000: 1000px;
+$min1100: 1100px;
+$min1200: 1200px;
+$min1280: 1280px;
+$max1200: 1199px;
+$min1400: 1500px;
+$min1500: 1500px;
+
+$font_GustanExtraBlack: GustanExtraBlack;
+$font_GustanLight: GustanLight;
+$font_Gustan: GustanMedium;
+$font_GustanBold: GustanBold;
+
+$c_orange_light_1: #FFAB8E;
+$c_orange_light_2: #FF865D;
+$c_orange_main: #FF6733;
+$c_orange_dark_1: #F03D00;
+$c_orange_dark_2: #C13100;
+
+// Transition speeds
+$transition_event_fs:font-size 0.5s ease;
+$transition_day_opacity:opacity 0.5s ease;
+
+$modal-backdrop-opacity: 0.8;
+
+// Calendar  Variables
+$c_event_text: #000;
+$c_cal_body_bg: red;
+
+//$c_cal_bg_gradient_1:#cebe29;
+//$c_cal_bg_gradient_2:#9b1f50;
+//$c_cal_bg_gradient_3:#2989d8;
+//$c_cal_bg_gradient_4:#89b4ff;
+
+$c_cal_bg_gradient_1:$c_orange_light_1;
+$c_cal_bg_gradient_2:$c_orange_light_2;
+$c_cal_bg_gradient_3:$c_orange_main;
+$c_cal_bg_gradient_4:$c_orange_dark_2;
+
+// Calendar Head
+$c_date_text: #FFF;
+$pad_head_container: 0;
+$border_radius_head: 0;
+
+// Calendar Body
+$pos_top_cal_body: 10px;
+$pos_right_cal_body: 0;
+$pos_bottom_cal_body: 0;
+$pos_left_cal_body: 0;
+$cal_body_radius: 0;
+
+// Calendar Cell
+// Date
+$pad_date_num: 2px;
+$pad_event_wrapper: 0;
+$pos_top_date_wrap:0;
+$pos_left_date_wrap:0;
+$c_bg_date_num:rgba(255,255,255,0.2);
+$c_text_date_num:#FFF;
+$date_num_min_width:20px;
+$fs_date_num:13px;
+$trans_speed_date_num: 0.5s;
+
+
+$pad_body_container: 0;
+
+// Event wrapper
+// this below padding is to help hide scroll bar and provide some room at the bottom for overflow
+$pad_event_wrap_inner: 0 20px 20px 0;
+
+// Modals
+$pad_base_modal_body:10px 20px 100px 20px;
+$margin_outer_modal: 10px;
+
+
+// FONTS
+$font-primary: 'GustanBlack';
+
+$font-family-sans-serif: HelveticaNeue,Helvetica,sans-serif;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:        $font-primary;
+
+$happ_base_ff: $font_GustanLight;
+
+
+//== CheckBox css for pretty-checkboxes
+$pretty--class-name: notsopretty;
+/* <div class="notsopretty circle"> */
+
+$pretty--border-radius: 0;
+
+$pretty--color-primary: #428bca;
+$pretty--color-success: $c_orange_main;
+$pretty--color-info: #5bc0de;
+$pretty--color-warning: #f0ad4e;
+$pretty--color-danger: #d9534f;
+$pretty--color-border: #b9b9b9;
+$pretty--color-radio: #b9b9b9;
+$pretty--color-bg: #fff;
+
+/* Google material design icons */
+$pretty--gmdi-class-name:'g-mdi';
+$pretty--gmdi-name:'Material Icons';
+$pretty--gmdi-attr:'data-icon';

@@ -1,0 +1,32 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+
+  "plugins": [
+//    "vue"
+  ]
+}
+
+//{
+//  "extends": [
+//    "airbnb"
+//  ],
+//
+//  "rules": {
+//    "vue/valid-v-if": "error"
+//  },
+//  "env": {
+//    "browser": true,
+//    "commonjs": true,
+//    "es6":  "plugins": [
+//    "vue"
+//    ], true,
+//    "node": true
+//  }
+//
+//}

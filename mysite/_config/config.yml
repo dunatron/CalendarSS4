@@ -1,0 +1,13 @@
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: mysite
+SilverStripe\View\SSViewer:
+  theme: calendar
+SilverStripe\Dev\Debug:
+  friendly_error_httpcode: true
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - EventFindaExtension
+    - HappSiteConfig
+SilverStripe\Assets\Image:
+  extensions:
+    - EventImage

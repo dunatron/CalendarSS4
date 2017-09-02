@@ -1,0 +1,7 @@
+---
+Name: calendarsiteroutes
+---
+SilverStripe\Control\Director:
+  rules:
+    pagefunction//$Action/$ID: PageController
+    calendarfunction//$Action/$ID: CalendarPage_Controller

@@ -1,0 +1,22 @@
+.modal {
+  margin: $margin_outer_modal;
+  .modal-dialog {
+    .modal-content {
+      overflow: hidden;
+      min-width: 320px;
+
+      .modal-header {
+      }
+      .modal-body {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding:$pad_base_modal_body;
+      }
+      .modal-footer {
+
+      }
+    }
+  }
+
+}
+

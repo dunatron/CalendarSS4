@@ -1,0 +1,15 @@
+html {
+  overflow: auto;
+
+  @include breakpoint($min1000){
+    overflow: hidden;
+  }
+
+  @include breakpoint($min865){
+    overflow: hidden;
+  }
+}
+
+html.modal-open{
+  overflow: hidden;
+}
