@@ -89,7 +89,9 @@ $pad_body_container: 0;
 
 // Event wrapper
 // this below padding is to help hide scroll bar and provide some room at the bottom for overflow
-$pad_event_wrap_inner: 0 20px 20px 0;
+$pad_event_wrap_inner: 0 30px 20px 0;
+$pos_right_event_wrap_inner: -20px;
+$width_event_wrap_inner: calc(100% + 10px);
 
 // Modals
 $pad_base_modal_body:10px 20px 100px 20px;

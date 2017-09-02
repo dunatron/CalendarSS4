@@ -256,7 +256,7 @@ body {
       height: inherit;
       margin: 0;
       padding: $pad_event_wrapper;
-      overflow-y: scroll;
+      overflow-y: hidden;
       overflow-x: hidden;
     }
 
@@ -265,8 +265,9 @@ body {
       position: absolute;
       margin-top: 0;
       height: inherit;
-      right: -10px;
-      width: 100%;
+      right: $pos_right_event_wrap_inner;
+      //width: 100%;
+      width: $width_event_wrap_inner;
       padding: $pad_event_wrap_inner;
     }
     .fc-content:hover {
