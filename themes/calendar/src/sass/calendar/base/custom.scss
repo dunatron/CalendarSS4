@@ -169,13 +169,16 @@ body {
     transition: opacity $trans_speed_date_num ease, visibility $trans_speed_date_num ease;
   }
   .date-num {
-    position: fixed;
+    text-align: center;
     padding: $pad_date_num;
     background-color: $c_bg_date_num;
     color: $c_text_date_num;
     min-width: $date_num_min_width;
-    text-align: center;
     font-size: $fs_date_num;
+    @include breakpoint($min865) {
+      position: fixed;
+      text-align: center;
+    }
   }
   .fc-body {
     border: none;
@@ -253,31 +256,48 @@ body {
     }
 
     .event-wrapper {
-      height: inherit;
-      margin: 0;
-      padding: $pad_event_wrapper;
-      overflow-y: hidden;
-      overflow-x: hidden;
+
+      @include breakpoint($min865) {
+        height: inherit;
+        margin: 0;
+        padding: $pad_event_wrapper;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
     }
 
     .event-wrap-inner {
-      overflow-y: scroll;
-      position: absolute;
-      margin-top: 0;
-      height: inherit;
-      right: $pos_right_event_wrap_inner;
-      //width: 100%;
-      width: $width_event_wrap_inner;
-      padding: $pad_event_wrap_inner;
+      @include breakpoint($min865) {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: absolute;
+        margin-top: 0;
+        height: inherit;
+        right: $pos_right_event_wrap_inner;
+        //width: 100%;
+        width: $width_event_wrap_inner;
+        padding: $pad_event_wrap_inner;
+      }
     }
     .fc-content:hover {
       .fc-date {
-        visibility: hidden;
-        opacity: 0;
+        @include breakpoint($min865) {
+          visibility: hidden;
+          opacity: 0;
+        }
       }
     }
     .Event {
       border-radius: 0;
+      max-width: 100%;
+      text-transform: capitalize;
+      font-size: 18px;
+      @include breakpoint($min865) {
+        visibility: hidden;
+        opacity: 0;
+        font-size: 11px;
+      }
+      //max-width: $width_event_wrap_inner;
     }
   }
 }
