@@ -61,9 +61,16 @@ $c_cal_bg_gradient_3:$c_orange_main;
 $c_cal_bg_gradient_4:$c_orange_dark_2;
 
 // Calendar Head
+$height_lg_header:60px;
 $c_date_text: #FFF;
 $pad_head_container: 0;
 $border_radius_head: 0;
+//nav__control__button
+$c_bg_nav_control: rgba(255,255,255,0.2);
+$fs_nav_control: 14px;
+$pad_nav_contol: 4px 12px;
+$margin_nav_control: 0 5px 0 0;
+$border_radius_nav_control: 8px;
 
 // Calendar Body
 $pos_top_cal_body: 10px;

@@ -1,0 +1,21 @@
+// Beats typing these rules out each time
+@mixin show_psuedo() {
+  content: '';
+  display: block;
+}
+
+// Clearfix.
+@mixin cf() {
+  &:after {
+    @include show_psuedo;
+    clear: both;
+  }
+}
+
+@mixin nav__control__button() {
+  background-color: $c_bg_nav_control;
+  font-size: $fs_nav_control;
+  padding: $pad_nav_contol;
+  margin: $margin_nav_control;
+  border-radius: $border_radius_nav_control;
+}

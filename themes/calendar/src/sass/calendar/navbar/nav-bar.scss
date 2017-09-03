@@ -1,0 +1,96 @@
+.custom-header {
+  @include breakpoint($min865) {
+   height: $height_lg_header;
+    padding: $pad_head_container;
+    display: flex;
+  }
+  .logo__wrapper{
+    @include breakpoint($min865) {
+      flex: 1;
+    }
+    #happSVGLogo {
+      height: 60px;
+      padding: 4px;
+    }
+  }
+
+  .date__wrapper {
+    @include breakpoint($min865) {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    #custom-prev {
+      height: 40px;
+      width: 40px;
+      background-color: rgba(255,255,255,0.2);
+      display: inline-block;
+      border-radius: 10px;
+      position: relative;
+      margin: 0 15px 0 0;
+      &:before {
+        content: '';
+        transform: rotate(45deg);
+        border-left: 2px solid #FFF;
+        border-bottom: 2px solid #FFF;
+        height: 20px;
+        width: 20px;
+        top: 10px;
+        position: absolute;
+        left: 15px;
+        opacity: 0.6;
+      }
+
+    }
+    #custom-next {
+      height: 40px;
+      width: 40px;
+      background-color: rgba(255,255,255,0.2);
+      display: inline-block;
+      border-radius: 10px;
+      position: relative;
+      margin: 0 0 0 15px;
+      &:before {
+        content: '';
+        transform: rotate(45deg);
+        border-right: 2px solid #FFF;
+        border-top: 2px solid #FFF;
+        height: 20px;
+        width: 20px;
+        top: 10px;
+        position: absolute;
+        /* right: 0px; */
+        right: 15px;
+        opacity: 0.6;
+      }
+    }
+    #custom-month {
+      color: red;
+      font-size: 36px;
+    }
+    #custom-year {
+      font-size: 36px;
+    }
+  }
+
+  .controls__wrapper {
+    @include breakpoint($min865) {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    #AddEventBtn {
+      @include nav__control__button;
+    }
+    #FilterBtn {
+      @include nav__control__button;
+    }
+    #SearchBtn {
+      @include nav__control__button;
+    }
+  }
+}

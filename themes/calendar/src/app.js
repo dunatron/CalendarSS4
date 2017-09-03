@@ -21,6 +21,11 @@ require('./components/modal/modal');
 const axios = require('axios');
 import './sass/app.scss';
 
+// svg.js
+import 'svg.js';
+import HappLogoAnimation from './components/logo/happ-logo';
+HappLogoAnimation();
+
 // import VueAddEvent from './components/calendar';
 //
 // VueAddEvent();

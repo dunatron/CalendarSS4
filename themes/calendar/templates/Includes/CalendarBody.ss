@@ -1,0 +1,1 @@
+<div id="calendar" class="fc-calendar-container"></div>
