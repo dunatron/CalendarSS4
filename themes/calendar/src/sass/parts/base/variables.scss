@@ -23,8 +23,8 @@ $system_font: $font-family-sans-serif;
 
 $font_stack: $custom-font, $system-font;
 
-$gustan_thin: 100;
-$gustan_regular: 400;
+$gustan_thin: 200;
+$gustan_regular: 500;
 $gustan_heavy: 700;
 
 $c_orange_light_1: #FFAB8E;
@@ -58,6 +58,7 @@ $c_bg_nav_control: rgba(255,255,255,0.2);
 $min_height_nav_control: 20px;
 $arrow_button_size: ($min_height_nav_control / 2);
 $arrow_top_displacement: ($arrow_button_size / 2);
+$nav_btn_svg_height:20px;
 $fs_nav_control: 14px;
 $pad_nav_contol: 4px 10px;
 $margin_nav_control: 0 5px 0 0;
@@ -66,13 +67,13 @@ $nav_control_fs_lg:14px;
 $nav_control_lh_lg:16px;
 $font_nav_control_lg: $gustan_thin #{$nav_control_fs_lg}/#{$nav_control_lh_lg} $font_stack;
 // nav date {month}
-$nav_month_fs_lg:32px;
-$nav_month_lh_lg:32px;
-$font_nav_month_lg: $gustan_heavy #{$nav_month_fs_lg}/#{$nav_month_lh_lg} $font_stack;
+$nav_month_fs_lg:26px;
+$nav_month_lh_lg:26px;
+$font_nav_month_lg: $gustan_regular #{$nav_month_fs_lg}/#{$nav_month_lh_lg} $font_stack;
 // nav date {year}
-$nav_year_fs_lg:32px;
-$nav_year_lh_lg:32px;
-$font_nav_year_lg: $gustan_regular #{$nav_year_fs_lg}/#{$nav_year_lh_lg} $font_stack;
+$nav_year_fs_lg:14px;
+$nav_year_lh_lg:14px;
+$font_nav_year_lg: $gustan_thin #{$nav_year_fs_lg}/#{$nav_year_lh_lg} $font_stack;
 
 
 // Calendar Body

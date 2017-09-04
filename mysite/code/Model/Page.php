@@ -17,6 +17,7 @@ class Page extends SiteTree
         'getLocationSVG' => 'HTMLText',
         'getCalendarSVG' => 'HTMLText',
         'getCloseSVG' => 'HTMLText',
+        'getLoopSVG' => 'HTMLText'
     ];
 
     private static $has_one = array();

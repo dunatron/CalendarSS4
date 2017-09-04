@@ -929,65 +929,34 @@ Drop and drag files here or click to browse
         //return $this->owner->customise($data)->renderWith('Page_results');
     }
 
-    public function getSearchSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/menu/search_icon.svg');
-    }
-
-    public function getAddEventSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/menu/add_event_icon_1.svg');
-    }
-
-    public function getFilterSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/menu/filter_icon_1.svg');
-    }
-
-    // SVG
-    // Clock SVG
-    public function getClockSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/clock.svg');
-    }
-
-    // Ticket SVG
-    public function getTicketSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/ticket.svg');
-    }
-
-    // Restrict SVG
-    public function getRestrictSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/restrict.svg');
-    }
-
-    // Location SVG
-    public function getLocationSVG()
-    {
-        $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/location.svg');
-    }
-
-    // Calendar SVG
     public function getCalendarSVG()
     {
         $theme = $this->ThemeDir();
         return file_get_contents('../' . $theme . '/svg/calendar.svg');
     }
 
-    // Close SVG
-    public function getCloseSVG()
+    public function getAddEventSVG()
     {
         $theme = $this->ThemeDir();
-        return file_get_contents('../' . $theme . '/svg/close.svg');
+        return file_get_contents('../' . $theme . '/svg/add_event_icon_1.svg');
+    }
+
+    public function getFilterSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../' . $theme . '/svg/filter_icon_1.svg');
+    }
+
+    public function getLoopSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../' . $theme . '/svg/loop.svg');
+    }
+
+    public function getSearchSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../' . $theme . '/svg/search_icon.svg');
     }
 
 }

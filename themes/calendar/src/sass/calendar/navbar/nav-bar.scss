@@ -7,6 +7,10 @@
   .logo__wrapper{
     @include breakpoint($min865) {
       flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
     }
     #happSVGLogo {
       height: 60px;
@@ -30,7 +34,7 @@
       display: inline-block;
       border-radius: 10px;
       position: relative;
-      margin: 0 15px 0 0;
+      margin: 0 10px 0 0;
       &:before {
         content: '';
         transform: rotate(45deg);
@@ -43,6 +47,9 @@
         left: 15px;
         opacity: 0.6;
       }
+      &:hover {
+        cursor: pointer;
+      }
 
     }
     #custom-next {
@@ -53,7 +60,7 @@
       display: inline-block;
       border-radius: 10px;
       position: relative;
-      margin: 0 0 0 15px;
+      margin: 0 0 0 10px;
       &:before {
         content: '';
         transform: rotate(45deg);
@@ -67,12 +74,17 @@
         right: 15px;
         opacity: 0.6;
       }
+      &:hover {
+        cursor: pointer;
+      }
     }
     #custom-month {
       font: $font_nav_month_lg;
     }
     #custom-year {
       font: $font_nav_year_lg;
+      align-self: flex-end;
+      padding: 0 0 0 2px;
     }
   }
 
@@ -86,12 +98,27 @@
     }
     #AddEventBtn {
       @include nav__control__button;
+      .add-event-svg {
+        height: $nav_btn_svg_height;
+      }
     }
     #FilterBtn {
       @include nav__control__button;
+      .filter-svg {
+        height: $nav_btn_svg_height;
+      }
     }
     #SearchBtn {
       @include nav__control__button;
+      .search-svg {
+        height: $nav_btn_svg_height;
+      }
+    }
+    #custom-current {
+      @include nav__control__button;
+      .loop-svg {
+        height: $nav_btn_svg_height;
+      }
     }
   }
 }
