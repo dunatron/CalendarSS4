@@ -1,16 +1,19 @@
 .custom-header {
+  display: flex;
+  flex-direction: column;
   @include breakpoint($min865) {
-   height: $height_lg_header;
+    height: $height_lg_header;
     padding: $pad_head_container;
-    display: flex;
+    flex-direction: row;
   }
   .logo__wrapper{
+    flex: 1;
+    order: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     @include breakpoint($min865) {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
     }
     #happSVGLogo {
       height: 60px;
@@ -20,12 +23,14 @@
   }
 
   .date__wrapper {
+    flex: 1;
+    order: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     @include breakpoint($min865) {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      order: 2;
     }
     #custom-prev {
       //height: 30px;
@@ -90,12 +95,19 @@
   }
 
   .controls__wrapper {
+    flex: 1;
+    order: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 0;
     @include breakpoint($min865) {
-      flex: 1;
-      display: flex;
+      order: 3;
       flex-direction: row;
       align-items: center;
       justify-content: flex-end;
+      padding: 0;
     }
     #AddEventBtn {
       @include nav__control__button;
@@ -117,7 +129,10 @@
     }
     #custom-current {
       @include nav__control__button;
-      margin-right: 10px;
+      margin-right: 0;
+      @include breakpoint($min865) {
+        margin-right: 10px;
+      }
       .loop-svg {
         height: $nav_btn_svg_height;
       }
