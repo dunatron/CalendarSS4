@@ -8,6 +8,7 @@ html {
   @include breakpoint($min865){
     overflow: hidden;
   }
+  font-family: $font_GustanLight;
 }
 
 html.modal-open{

@@ -15,6 +15,7 @@
     <![endif]-->
 </head>
 <body>
+<% include InlineAppColors %>
 <div class="container-fluid" id="site-wrapper">
     $Layout
     $Form

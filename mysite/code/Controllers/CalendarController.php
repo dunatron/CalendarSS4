@@ -111,10 +111,10 @@ class CalendarPage_Controller extends PageController
             {
 //                error_log('Key already exists');
 //                error_log(var_export($eve->EventDate, true));
-                $dateArray[$eve->EventDate] .= '<a class="Event" data-EID="'.$eve->ID.'" href="#" v-on:click="getEventData" data-toggle="modal" data-target="#myModal">' .$eve->Title . '</a>';
+                $dateArray[$eve->EventDate] .= '<a class="Event" data-EID="'.$eve->ID.'" href="#" v-on:click="getEventData" data-toggle="modal" data-target="#eventModal">' .$eve->Title . '</a>';
 //                $dateArray[$eve->EventDate] .= '<event></event>';
             } else {
-                $dateArray[$eve->EventDate] = '<a class="Event" data-EID="'.$eve->ID.'"  href="#" v-on:click="getEventData" data-toggle="modal" data-target="#myModal">' . $eve->Title . '</a>';
+                $dateArray[$eve->EventDate] = '<a class="Event" data-EID="'.$eve->ID.'"  href="#" v-on:click="getEventData" data-toggle="modal" data-target="#eventModal">' . $eve->Title . '</a>';
 //                $dateArray[$eve->EventDate] = '<event></event>';
             }
 

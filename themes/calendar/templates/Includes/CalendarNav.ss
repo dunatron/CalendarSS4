@@ -14,8 +14,6 @@
 <%--</div>--%>
 
 <div class="custom-header clearfix">
-    <%--<h2>WhatsHapp</h2>--%>
-
     <div class="logo__wrapper">
         <% include HappLogo %>
     </div>
@@ -26,9 +24,9 @@
         <span id="custom-next" class="custom-next" @click="nextMonth"></span>
     </div>
     <div class="controls__wrapper">
-        <span id="AddEventBtn">Add Event</span>
-        <span id="FilterBtn">Filter</span>
-        <span id="SearchBtn">Search</span>
+        <span id="AddEventBtn" data-toggle="modal" data-target="#addEventModal">Add Event</span>
+        <span id="FilterBtn" data-toggle="modal" data-target="#filterModal">Filter</span>
+        <span id="SearchBtn" data-toggle="modal" data-target="#searchModal">Search</span>
         <%--<span id="custom-current" class="custom-current" title="Got to current date" @click="currentMonth"></span>--%>
     </div>
 </div>

@@ -18,4 +18,10 @@
   padding: $pad_nav_contol;
   margin: $margin_nav_control;
   border-radius: $border_radius_nav_control;
+  font: $font_nav_control_lg;
+  min-height: $min_height_nav_control;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }

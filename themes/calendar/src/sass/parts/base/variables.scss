@@ -5,34 +5,27 @@
 //$wide:#{$screen-lg-min})";
 
 $min370: 370px;
-$min400: 400px;
-$min460: 460px;
-$min510: 510px;
 $min525: 525px;
-$min600: 600px;
-$min660: 660px;
-$min700: 700px;
-$max699: 699px;
-$min750: 750px;
 $min768: 768px;
-$max768: 768px;
-$min880: 880px;
 $min865: 865px;
-$min960: 960px;
 $min992: 992px;
-$max992: 992px;
 $min1000: 1000px;
-$min1100: 1100px;
 $min1200: 1200px;
-$min1280: 1280px;
-$max1200: 1199px;
-$min1400: 1500px;
-$min1500: 1500px;
 
 $font_GustanExtraBlack: GustanExtraBlack;
 $font_GustanLight: GustanLight;
 $font_Gustan: GustanMedium;
 $font_GustanBold: GustanBold;
+$font-family-sans-serif: HelveticaNeue,Helvetica,sans-serif;
+
+$custom_font: $font_GustanLight;
+$system_font: $font-family-sans-serif;
+
+$font_stack: $custom-font, $system-font;
+
+$gustan_thin: 100;
+$gustan_regular: 400;
+$gustan_heavy: 700;
 
 $c_orange_light_1: #FFAB8E;
 $c_orange_light_2: #FF865D;
@@ -50,11 +43,6 @@ $modal-backdrop-opacity: 0.8;
 $c_event_text: #000;
 $c_cal_body_bg: red;
 
-//$c_cal_bg_gradient_1:#cebe29;
-//$c_cal_bg_gradient_2:#9b1f50;
-//$c_cal_bg_gradient_3:#2989d8;
-//$c_cal_bg_gradient_4:#89b4ff;
-
 $c_cal_bg_gradient_1:$c_orange_light_1;
 $c_cal_bg_gradient_2:$c_orange_light_2;
 $c_cal_bg_gradient_3:$c_orange_main;
@@ -67,10 +55,25 @@ $pad_head_container: 0;
 $border_radius_head: 0;
 //nav__control__button
 $c_bg_nav_control: rgba(255,255,255,0.2);
+$min_height_nav_control: 20px;
+$arrow_button_size: ($min_height_nav_control / 2);
+$arrow_top_displacement: ($arrow_button_size / 2);
 $fs_nav_control: 14px;
-$pad_nav_contol: 4px 12px;
+$pad_nav_contol: 4px 10px;
 $margin_nav_control: 0 5px 0 0;
 $border_radius_nav_control: 8px;
+$nav_control_fs_lg:14px;
+$nav_control_lh_lg:16px;
+$font_nav_control_lg: $gustan_thin #{$nav_control_fs_lg}/#{$nav_control_lh_lg} $font_stack;
+// nav date {month}
+$nav_month_fs_lg:32px;
+$nav_month_lh_lg:32px;
+$font_nav_month_lg: $gustan_heavy #{$nav_month_fs_lg}/#{$nav_month_lh_lg} $font_stack;
+// nav date {year}
+$nav_year_fs_lg:32px;
+$nav_year_lh_lg:32px;
+$font_nav_year_lg: $gustan_regular #{$nav_year_fs_lg}/#{$nav_year_lh_lg} $font_stack;
+
 
 // Calendar Body
 $pos_top_cal_body: 10px;
@@ -104,17 +107,13 @@ $width_event_wrap_inner: calc(100% + 10px);
 $pad_base_modal_body:10px 20px 100px 20px;
 $margin_outer_modal: 10px;
 
-
-// FONTS
-$font-primary: 'GustanBlack';
-
-$font-family-sans-serif: HelveticaNeue,Helvetica,sans-serif;
-$font-family-serif:       Georgia, "Times New Roman", Times, serif;
-//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-$font-family-base:        $font-primary;
-
-$happ_base_ff: $font_GustanLight;
+//$font-family-sans-serif: HelveticaNeue,Helvetica,sans-serif;
+//$font-family-serif:       Georgia, "Times New Roman", Times, serif;
+////** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+//$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+//$font-family-base:        $font-primary;
+//
+//$happ_base_ff: $font_GustanLight;
 
 
 //== CheckBox css for pretty-checkboxes

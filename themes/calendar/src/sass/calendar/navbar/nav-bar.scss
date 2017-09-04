@@ -23,7 +23,8 @@
       justify-content: center;
     }
     #custom-prev {
-      height: 40px;
+      //height: 30px;
+      min-height: $min_height_nav_control;
       width: 40px;
       background-color: rgba(255,255,255,0.2);
       display: inline-block;
@@ -33,11 +34,11 @@
       &:before {
         content: '';
         transform: rotate(45deg);
-        border-left: 2px solid #FFF;
-        border-bottom: 2px solid #FFF;
-        height: 20px;
-        width: 20px;
-        top: 10px;
+        border-left: 1px solid #FFF;
+        border-bottom: 1px solid #FFF;
+        height: $arrow_button_size;
+        width: $arrow_button_size;
+        top: $arrow_top_displacement;
         position: absolute;
         left: 15px;
         opacity: 0.6;
@@ -45,7 +46,8 @@
 
     }
     #custom-next {
-      height: 40px;
+      //height: 30px;
+      min-height: $min_height_nav_control;
       width: 40px;
       background-color: rgba(255,255,255,0.2);
       display: inline-block;
@@ -55,11 +57,11 @@
       &:before {
         content: '';
         transform: rotate(45deg);
-        border-right: 2px solid #FFF;
-        border-top: 2px solid #FFF;
-        height: 20px;
-        width: 20px;
-        top: 10px;
+        border-right: 1px solid #FFF;
+        border-top: 1px solid #FFF;
+        height: $arrow_button_size;
+        width: $arrow_button_size;
+        top: $arrow_top_displacement;
         position: absolute;
         /* right: 0px; */
         right: 15px;
@@ -67,11 +69,10 @@
       }
     }
     #custom-month {
-      color: red;
-      font-size: 36px;
+      font: $font_nav_month_lg;
     }
     #custom-year {
-      font-size: 36px;
+      font: $font_nav_year_lg;
     }
   }
 
