@@ -15,10 +15,6 @@ require('webpack-jquery-ui/resizable');
 require('webpack-jquery-ui/selectable');
 require('webpack-jquery-ui/sortable');
 
-var baseCal = require('./components/jquery.calendario');
-var mainCal = require('./components/main');
-require('./components/modal/modal');
-
 const axios = require('axios');
 import './sass/app.scss';
 
@@ -30,5 +26,8 @@ import HappLogoAnimation from './components/logo/happ-logo';
 // import VueAddEvent from './components/calendar';
 
 $(document).ready(function () {
-  HappLogoAnimation();
+    var baseCal = require('./components/jquery.calendario');
+    var mainCal = require('./components/main');
+    require('./components/modal/modal');
+    HappLogoAnimation();
 });

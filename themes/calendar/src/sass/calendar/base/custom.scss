@@ -343,7 +343,10 @@ body {
     right: auto;
     height: auto;
     width: auto;
-    //margin: 0 20px 20px;
+    margin: $fc_calendar_margin_small;
+    @include breakpoint($min865) {
+      margin: $fc_calendar_margin_large;
+    }
     .fc-head, .fc-row > div > span.fc-date {
       position: relative;
       top: auto;
