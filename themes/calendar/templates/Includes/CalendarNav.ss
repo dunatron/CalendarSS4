@@ -16,7 +16,7 @@
 <div class="custom-header clearfix">
     <div class="logo__wrapper">
         <% include HappLogo %>
-        <a href="https://placeholder.com"><img src="http://via.placeholder.com/200x50"></a>
+        <% include ClientLogo %>
     </div>
     <div class="date__wrapper">
         <span id="custom-prev" class="custom-prev" @click="prevMonth"></span>

@@ -30,6 +30,8 @@ class HappSiteConfig extends DataExtension
         'GradientBGColor4' => 'Varchar(25)'
     );
 
+
+
     /*
      *
      * $c_cal_bg_gradient_1:$c_orange_light_1;
@@ -49,9 +51,15 @@ $c_cal_bg_gradient_4:$c_orange_dark_2;
          * Gradient colors for calendar background
          */
         $fields->addFieldToTab('Root.CalendarBase', CompositeField::create(
+
+            // Logo
+            $clientHeader = HeaderField::create('ClientBrand', 'Client Logo'),
+            $clientLogo = UploadField::create('ClientLogo')
+                ->setFolderName('Client-Logos'),
+
+            // Client colors
             $colorHeader = HeaderField::create('ColorHeader', 'Background colors for calendar gradient'),
             $defaultBackgroundColor = TextField::create('DefaultBGColor', 'Default Background color for calendar body'),
-
             $gradientLabel = LabelField::create('GradientColorLabel', 'Gradient colors for the calendar Background'),
             $test = CompositeField::create(
                 $useGradient = CheckboxField::create('UseGradient', 'Check to use the gradient instead of the default base'),
