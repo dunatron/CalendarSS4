@@ -1,12 +1,15 @@
 .custom-header {
   display: flex;
+  margin: 0;
   flex-direction: column;
+  padding: $pad_head_container_small;
   @include breakpoint($min865) {
     height: $height_lg_header;
     padding: $pad_head_container;
     flex-direction: row;
   }
   .logo__wrapper{
+    padding: 0;
     flex: 1;
     order: 1;
     display: flex;
@@ -14,6 +17,7 @@
     align-items: center;
     justify-content: flex-start;
     @include breakpoint($min865) {
+      padding: 0;
     }
     #happSVGLogo {
       height: 60px;
@@ -29,7 +33,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    padding: 0 0 15px 0;
     @include breakpoint($min865) {
+      padding: 0;
       order: 2;
     }
     #custom-prev {

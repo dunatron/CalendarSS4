@@ -1,5 +1,6 @@
 /* jshint node: true */
 // 'use strict';
+/* global $, jQuery, happLoader*/
 
 
 // import 'webpack-jquery-ui';
@@ -24,18 +25,10 @@ import './sass/app.scss';
 // svg.js
 import 'svg.js';
 import HappLogoAnimation from './components/logo/happ-logo';
-HappLogoAnimation();
+
 
 // import VueAddEvent from './components/calendar';
-//
-// VueAddEvent();
 
-// $(".Event").on("click", function(evt) {
-//     console.log("clicked in jQuery")
-//     $("#site-wrapper").triggerHandler("customEvent.jq.namespaces")
-// })
-
-// DOn't use for es6 silly
-// $(document).ready(function () {
-//     VueAddEvent();
-// });
+$(document).ready(function () {
+  HappLogoAnimation();
+});

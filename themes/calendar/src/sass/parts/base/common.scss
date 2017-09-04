@@ -11,6 +11,17 @@ html {
   font-family: $font_GustanLight;
 }
 
+#site-wrapper {
+  padding: 2% 3%;
+  @include breakpoint($min1000){
+
+  }
+
+  @include breakpoint($min865){
+
+  }
+}
+
 html.modal-open{
   overflow: hidden;
 }

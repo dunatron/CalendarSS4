@@ -36,33 +36,6 @@ class CalendarPage_Controller extends PageController
     {
         //parent::init();
         parent::doInit();
-        Requirements::clear();
-
-        $themeFolder = $this->ThemeDir();
-
-        // Set the folder to our theme so that relative image paths work
-        //Requirements::set_combined_files_folder($themeFolder . '/combinedfiles');
-
-        $JSFiles = array(
-            //$themeFolder . '/dist/bootstrap.bundle.js',
-            $themeFolder . '/dist/app.bundle.js'
-        );
-
-//        $CSSFiles = array(
-//            //$themeFolder . '/css/base-styles.css',
-//            $themeFolder . '/css/Calendar-Core.css',
-//            $themeFolder . '/css/homepage.css',
-//            $themeFolder . '/css/main.css'
-//        );
-
-        // Combine css files
-        //Requirements::combine_files('styles.css', $CSSFiles);
-        Requirements::set_write_js_to_body(false);
-
-        //Requirements::combine_files('scripts.js', $JSFiles);
-        Requirements::javascript($themeFolder . '/dist/vendor.bundle.js');
-//        Requirements::javascript($themeFolder . '/dist/bootstrap.bundle.js');
-        Requirements::javascript($themeFolder . '/dist/app.bundle.js');
 
     }
 
