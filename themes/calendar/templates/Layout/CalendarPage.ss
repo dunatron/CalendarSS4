@@ -3,9 +3,9 @@
     <% include CalendarNav %>
     <% include CalendarBody %>
     <!-- Modal -->
-    <% include EventModal %>
+    <% include Modals/EventModal %>
     <%-- Nav Modals (addEventModal', filterModal, searchModal) --%>
-    <% include addEventModal %>
-    <% include filterModal %>
-    <% include searchModal %>
+    <% include Modals/AddEventModal %>
+    <% include Modals/FilterModal %>
+    <% include Modals/SearchModal %>
 </div>
