@@ -57,6 +57,7 @@ class CalendarPage_Controller extends PageController
 
         // Combine css files
         //Requirements::combine_files('styles.css', $CSSFiles);
+        Requirements::set_write_js_to_body(false);
 
         //Requirements::combine_files('scripts.js', $JSFiles);
         Requirements::javascript($themeFolder . '/dist/vendor.bundle.js');
