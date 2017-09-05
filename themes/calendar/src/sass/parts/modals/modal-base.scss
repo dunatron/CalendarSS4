@@ -4,6 +4,9 @@
     .modal-content {
       overflow: hidden;
       min-width: 320px;
+      @include breakpoint($min865){
+        width: 650px;
+      }
 
       .modal-header {
       }

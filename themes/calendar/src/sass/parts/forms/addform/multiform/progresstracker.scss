@@ -2,6 +2,10 @@ ol.progtrckr {
   margin: 0;
   padding-bottom: 2.2rem;
   list-style-type: none;
+
+  @include breakpoint($min865){
+
+  }
   li {
     display: inline-block;
     text-align: center;
@@ -10,6 +14,9 @@ ol.progtrckr {
     cursor: pointer;
     span {
       padding: 0 1.5rem;
+      @include breakpoint($min865){
+        display: inline-block;
+      }
     }
   }
 }
