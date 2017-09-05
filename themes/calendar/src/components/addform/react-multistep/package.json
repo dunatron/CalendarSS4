@@ -1,0 +1,115 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-multistep",
+        "scope": null,
+        "escapedName": "react-multistep",
+        "name": "react-multistep",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/data/site/docroot/themes/calendar"
+    ]
+  ],
+  "_from": "react-multistep@latest",
+  "_id": "react-multistep@2.2.12",
+  "_inCache": true,
+  "_location": "/react-multistep",
+  "_nodeVersion": "7.8.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/react-multistep-2.2.12.tgz_1501107258920_0.933526813518256"
+  },
+  "_npmUser": {
+    "name": "djidja8",
+    "email": "srdjan@timok.com"
+  },
+  "_npmVersion": "4.2.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-multistep",
+    "scope": null,
+    "escapedName": "react-multistep",
+    "name": "react-multistep",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-multistep/-/react-multistep-2.2.12.tgz",
+  "_shasum": "23bc4b987d7fbd58d5b64631a8f2c8762caadaf4",
+  "_shrinkwrap": null,
+  "_spec": "react-multistep",
+  "_where": "/data/site/docroot/themes/calendar",
+  "author": {
+    "name": "@djidja8",
+    "email": "srdjan@timok.com",
+    "url": "https://github.com/srdjan"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2017"
+          ]
+        }
+      ]
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/srdjan/react-multistep/issues"
+  },
+  "dependencies": {
+    "react": "^15.6.x",
+    "react-dom": "^15.6.x"
+  },
+  "description": "Responsive ReactJS multistep form component",
+  "devDependencies": {
+    "babel": "^6.x.x",
+    "babel-cli": "^6.x.x",
+    "babel-plugin-transform-react-jsx": "^6.x.x",
+    "babel-preset-es2015": "^6.x.x",
+    "babel-preset-es2017": "^6.x.x",
+    "babel-preset-react": "^6.x.x",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.x",
+    "mocha": "^3.2.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "23bc4b987d7fbd58d5b64631a8f2c8762caadaf4",
+    "tarball": "https://registry.npmjs.org/react-multistep/-/react-multistep-2.2.12.tgz"
+  },
+  "gitHead": "71cfdf687ee5625776e0b6b31a76190d55e0e5c7",
+  "homepage": "https://github.com/srdjan/react-multistep",
+  "keywords": [
+    "react, reactjs, responsive, component"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "maintainers": [
+    {
+      "name": "djidja8",
+      "email": "srdjan@timok.com"
+    }
+  ],
+  "name": "react-multistep",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srdjan/react-multistep.git"
+  },
+  "scripts": {
+    "build": "browserify ./example/app/app.js -o ./example/app/bundle.js",
+    "test": "todo... mocha"
+  },
+  "version": "2.2.12"
+}
