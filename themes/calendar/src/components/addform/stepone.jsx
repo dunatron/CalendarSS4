@@ -1,7 +1,12 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import DatePicker from '../datepicker/date-picker';
+import HappTimePicker from '../timepicker/time-picker';
 
-const store = { firstName: '', lastName: '' };
+const store = {
+  firstName: '',
+  lastName: '',
+};
 
 const StepOne = React.createClass({
   getInitialState() {
@@ -21,26 +26,17 @@ const StepOne = React.createClass({
   render() {
     return (
         <div>
-            <div className="row">
-            <div className="six columns">
-                <label>First Name</label>
-                <input className="u-full-width" placeholder="First Name"
-                  type="text"
-                  onChange={this.handleFirstNameChanged}
+            <div className="form-group">
+                <DatePicker />
+                <HappTimePicker />
+                <label htmlFor="FirstName">First Name</label>
+                <input type="text" className="form-control" id="FirstName" aria-describedby="emailHelp" placeholder="FirstName" onChange={this.handleFirstNameChanged}
                   value={this.state.firstName}
                   autoFocus
     />
-            </div>
-            </div>
-            <div className="row">
-            <div className="six columns">
-                <label>Last Name</label>
-                <input className="u-full-width" placeholder="Last Name"
-                  type="text"
-                  onChange={this.handleLastNameChanged}
-                  value={this.state.lastName}
-    />
-            </div>
+                    <small id="emailHelp" className="form-text text-muted">
+                        We'll never share your email with anyone else.
+                    </small>
             </div>
         </div>
     );},

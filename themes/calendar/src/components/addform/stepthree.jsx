@@ -1,5 +1,7 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import HappMap from '../map/happ-map.jsx';
+
 
 const store = { password: '123', passwordConfirm: '' };
 
@@ -21,6 +23,7 @@ const StepThree = React.createClass({
   render() {
     return (
             <div>
+               <HappMap />
             <div className="row">
                 <div className="six columns">
                 <label>Password</label>

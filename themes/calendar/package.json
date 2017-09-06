@@ -44,6 +44,8 @@
     "pretty-checkbox": "^2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-google-maps": "^7.2.0",
+    "react-helmet": "^5.2.0",
     "react-multistep": "^2.2.12",
     "resolve-url-loader": "^2.0.2",
     "sass-loader": "^6.0.6",
@@ -72,5 +74,8 @@
     "webpack-jquery-ui": "^1.0.0",
     "webpack-stream": "^4.0.0",
     "wickedpicker": "^0.4.3"
+  },
+  "dependencies": {
+    "react-places-autocomplete": "^5.4.3"
   }
 }

@@ -23,4 +23,5 @@
 
 </body>
 <div class="clearfix"></div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWVd4651hNv8mOn-RaHZdC166O82S-BbY&libraries=places"></script>
 </html>

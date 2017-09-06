@@ -64,9 +64,15 @@ export default class MultiStep extends Component {
   }
 
   handleKeyDown(evt) {
-    if (evt.which === 13) {
-      this.next()
-    }
+    // if (evt.which === 13) {
+    //   this.next()
+    // }
+      if (evt.which === 39) {
+          this.next()
+      }
+      if (evt.which === 37) {
+          this.previous()
+      }
   }
 
   handleOnClick(evt) {

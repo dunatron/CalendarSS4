@@ -12,7 +12,7 @@ export default class AddEventForm extends React.Component {
                     <Multistep initialStep={1} steps={steps} />
                 </div>
                 <div className="container app-footer">
-                    <h6>Press 'Enter' or click on progress bar for next step.</h6>
+                    <h6>use arrow keys or progress bar to navigate form.</h6>
                 </div>
             </div>
         );

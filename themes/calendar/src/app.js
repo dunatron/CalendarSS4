@@ -25,6 +25,7 @@ import HappLogoAnimation from './components/logo/happ-logo';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AddEventForm from './components/forms/AddEventForm';
+// import DatePicker from './components/datepicker/date-picker';
 // import Multistep from 'react-multistep';
 //
 // import { steps } from './components/addform/index';
@@ -60,4 +61,6 @@ $(document).ready(function () {
     // ReactDOM.render(<Multistep showNavigation={true} steps={steps} />, document.getElementById('ReactAddEventForm'));
 
   ReactDOM.render(<AddEventForm />, document.getElementById('ReactAddEventForm'));
+  //   ReactDOM.render(<DatePicker />, document.getElementById('ReactAddEventForm'));
+
 });
