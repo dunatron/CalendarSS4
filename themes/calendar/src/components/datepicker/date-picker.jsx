@@ -9,6 +9,7 @@ export default class DatePicker extends React.Component {
         selectedDays: [],
     };
     handleDayClick = (day, { selected }) => {
+        // debugger;
         const { selectedDays } = this.state;
         if (selected) {
             const selectedIndex = selectedDays.findIndex(selectedDay =>

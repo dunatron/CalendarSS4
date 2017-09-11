@@ -25,32 +25,6 @@ import HappLogoAnimation from './components/logo/happ-logo';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AddEventForm from './components/forms/AddEventForm';
-// import DatePicker from './components/datepicker/date-picker';
-// import Multistep from 'react-multistep';
-//
-// import { steps } from './components/addform/index';
-
-// const steps = [
-//     {name: 'StepOne', component: <StepOne>},
-//     {name: 'StepTwo', component: <StepTwo>},
-//     {name: 'StepThree', component: <StepThree>},
-//     {name: 'StepFour', component: <StepFour>},
-// ];
-// class App extends React.Component {
-//   render() {
-//     return (
-//             <div className="container">
-//             <div>
-//             <Multistep initialStep={1} steps={steps} />
-//             </div>
-//             <div className="container app-footer">
-//             <h6>Press 'Enter' or click on progress bar for next step.</h6>
-//         Code is on <a href="https://github.com/Srdjan/react-multistep" target="_blank">github</a>
-//             </div>
-//             </div>
-//     );
-//   }
-// }
 
 $(document).ready(function () {
   var baseCal = require('./components/jquery.calendario');
