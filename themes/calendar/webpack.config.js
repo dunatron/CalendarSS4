@@ -47,14 +47,14 @@ module.exports = {
   },
 
   plugins: [
-      // Doing the more manual approach with entry of vendor.
-      // Remember to cashe the vendor output file
+    // Doing the more manual approach with entry of vendor.
+    // Remember to cashe the vendor output file
     new webpack.ProvidePlugin({
       // $: 'jquery',
       // jQuery: 'jquery',
       $: 'jquery',
       jQuery: 'jquery',
-      'window.jQuery': "jquery'",
+      'window.jQuery': 'jquery\'',
       'window.$': 'jquery',
     }),
 
@@ -67,38 +67,38 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
 
     new BundleAnalyzerPlugin({
-        // Can be `server`, `static` or `disabled`.
-        // In `server` mode analyzer will start HTTP server to show bundle report.
-        // In `static` mode single HTML file with bundle report will be generated.
-        // In `disabled` mode you can use this plugin to just
-        // generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
+      // Can be `server`, `static` or `disabled`.
+      // In `server` mode analyzer will start HTTP server to show bundle report.
+      // In `static` mode single HTML file with bundle report will be generated.
+      // In `disabled` mode you can use this plugin to just
+      // generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
       analyzerMode: 'static',
-        // Host that will be used in `server` mode to start HTTP server.
+      // Host that will be used in `server` mode to start HTTP server.
       analyzerHost: '127.0.0.1',
-        // Port that will be used in `server` mode to start HTTP server.
+      // Port that will be used in `server` mode to start HTTP server.
       analyzerPort: 8888,
-        // Path to bundle report file that will be generated in `static` mode.
-        // Relative to bundles output directory.
+      // Path to bundle report file that will be generated in `static` mode.
+      // Relative to bundles output directory.
       reportFilename: 'report.html',
-        // Module sizes to show in report by default.
-        // Should be one of `stat`, `parsed` or `gzip`.
-        // See "Definitions" section for more information.
+      // Module sizes to show in report by default.
+      // Should be one of `stat`, `parsed` or `gzip`.
+      // See "Definitions" section for more information.
       defaultSizes: 'parsed',
-        // Automatically open report in default browser
+      // Automatically open report in default browser
       openAnalyzer: true,
-        // If `true`, Webpack Stats JSON file will be generated in bundles output directory
+      // If `true`, Webpack Stats JSON file will be generated in bundles output directory
       generateStatsFile: false,
-        // Name of Webpack Stats JSON file that will be generated
-        // if `generateStatsFile` is `true`.
-        // Relative to bundles output directory.
+      // Name of Webpack Stats JSON file that will be generated
+      // if `generateStatsFile` is `true`.
+      // Relative to bundles output directory.
       statsFilename: 'stats.json',
-        // Options for `stats.toJson()` method.
-        // For example you can exclude sources of your modules,
-        // from stats file with `source: false` option.
-        // See more options here:
-        // https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
+      // Options for `stats.toJson()` method.
+      // For example you can exclude sources of your modules,
+      // from stats file with `source: false` option.
+      // See more options here:
+      // https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
       statsOptions: null,
-            // Log level. Can be 'info', 'warn', 'error' or 'silent'.
+      // Log level. Can be 'info', 'warn', 'error' or 'silent'.
       logLevel: 'info',
     }),
 
@@ -128,7 +128,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'], //Loaders are
-          // processed in reverse array order. That means css-loader will run before style-loader.
+        // processed in reverse array order. That means css-loader will run before style-loader.
       },
       {
         test: /\.(sass|scss)$/,
@@ -139,17 +139,17 @@ module.exports = {
         ],
       },
 
-            // Loaders for other file types go here
-            { test: /\.(woff|woff2|ttf|eot|svg|gif|png)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-                loader: 'url-loader?limit=100000&name=fonts/[name].[ext]',
-            },
+      // Loaders for other file types go here
+      { test: /\.(woff|woff2|ttf|eot|svg|gif|png)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
+        loader: 'url-loader?limit=100000&name=fonts/[name].[ext]',
+      },
     ],
 
     loaders: [
-            // Bootstrap 3
-            { test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
-                loader: 'imports-loader?jQuery=jquery',
-            },
+      // Bootstrap 3
+      { test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
+        loader: 'imports-loader?jQuery=jquery',
+      },
     ],
 
 

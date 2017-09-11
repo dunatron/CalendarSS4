@@ -32,7 +32,7 @@ $(document).ready(function () {
   require('./components/modal/modal');
   HappLogoAnimation();
   // ReactDOM.render(<AddEventForm title="Add Event"/>, document.getElementById('ReactAddEventForm'));
-    // ReactDOM.render(<Multistep showNavigation={true} steps={steps} />, document.getElementById('ReactAddEventForm'));
+  // ReactDOM.render(<Multistep showNavigation={true} steps={steps} />, document.getElementById('ReactAddEventForm'));
 
   ReactDOM.render(<AddEventForm />, document.getElementById('ReactAddEventForm'));
   //   ReactDOM.render(<DatePicker />, document.getElementById('ReactAddEventForm'));
