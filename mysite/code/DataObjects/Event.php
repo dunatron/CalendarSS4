@@ -26,6 +26,7 @@ use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\Forms\FieldGroup;
+use SilverStripe\Forms\ReadonlyField;
 
 
 class Event extends DataObject {
@@ -113,6 +114,9 @@ class Event extends DataObject {
             // EventTitle
             TextField::create('EventTitle', 'Title:')
                 ->setDescription('e.g <strong>Little johnys bakeoff</strong>'),
+           // EventDescription
+            TextareaField::create('EventDescription', 'Description')
+                ->setDescription('The real description field'),
             // EventVenue
             TextField::create('EventVenue', 'Venue:')
                 ->setDescription('e.g <strong>Entertainment Centre</strong>')
@@ -134,81 +138,69 @@ class Event extends DataObject {
             ])
         );
 
-/*
+        $eventDateTime = CompositeField::create(
 
-        // LocationText
-        $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Location:')
-            ->setDescription('e.g <strong>182 Bowmar Rd, Waimumu 9774, New Zealand</strong>'));
-        // LocationLat
-        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLat', 'Location latitude:')
-            ->setDescription('e.g <strong>-46.1326615</strong>'));
-        // LocationLon
-        $fields->addFieldToTab('Root.Main', NumericField::create('LocationLon', 'Location longitude:')
-            ->setDescription('e.g <strong>168.89592100000004</strong>'));
-        $fields->addFieldToTab('Root.Main', DateField::create('EventDate', DBDate::class)
-            ->setDescription('Date for the event'));
-        // StartTime
-        $fields->addFieldToTab('Root.Main', TimeField::create('StartTime')
-            ->setDescription('Start time for the event format-><strong>18:00:00</strong>'));
+            HeaderField::create('DateTimeDetails', ' Date Time Details'),
+            FieldGroup::create([
+                // EventDate
+                DateField::create('EventDate', 'Event Date')
+                    ->setDescription('Date for the event'),
+                // StartTime
+                TimeField::create('StartTime')
+                    ->setDescription('Start time for the event format-><strong>18:00:00</strong>'),
+                // FinishTime
+                TimeField::create('FinishTime')
+                    ->setDescription('Finish time for the event format-><strong>18:01:00</strong>')
+                    ->setAttribute('autocomplete', 'on')
+            ])
 
-        // FinishTime
-        $fields->addFieldToTab('Root.Main', TimeField::create('FinishTime')
-            ->setDescription('Finish time for the event format-><strong>18:01:00</strong>')
-            ->setAttribute('autocomplete', 'on'));
+        );
 
-        // Type
-        $fields->addFieldToTab('Root.Main', CheckboxField::create('EventApproved', 'Event Approved')
-            ->setDescription('Check to display this event on the calendar'));
+        $eventApproval = CompositeField::create(
 
-        // Ticket website
-        $fields->addFieldToTab('Root.Main', TextField::create('TicketWebsite', 'Ticket Website')
-            ->setDescription('URL where tickets for this event can be purchased from'));
+            HeaderField::create('ApprovalDetails', 'Approve Event')->addExtraClass('primary'),
+            // EventApproved
+            CheckboxField::create('EventApproved', 'Event Approved')
+                ->setDescription('Check to display this event on the calendar')
 
-        // Ticket phone
-        $fields->addFieldToTab('Root.Main', TextField::create('TicketPhone', 'Ticket Phone')
-            ->setDescription('Number to call to buy tickets'));
+        );
 
-        // BookingWebsite
-        $fields->addFieldToTab('Root.Main', TextField::create('BookingWebsite', 'Booking Website URL')
-            ->setDescription('Booking website URL'));
+        $eventRestrictions = CompositeField::create(
 
-        // EventDescription
-        $fields->addFieldToTab('Root.Main', TextareaField::create('EventDescription', 'Description')
-            ->setDescription('The real description field'));
+            HeaderField::create('RestrictionDetails', 'Restrictions'),
+            DropdownField::create(
+                'Restriction',
+                'Choose A Restriction Type',
+                EventRestriction::get()->map('ID', 'Description')->toArray(),
+                null,
+                true
+            )
 
-        // Restrictions
-        $fields->addFieldToTab('Root.Main', new DropdownField(
-            'Restriction',
-            'Choose A Restriction Type',
-            EventRestriction::get()->map('ID', 'Description')->toArray(),
-            null,
-            true
-        ));
+        );
 
-        // Access Type
         $acc = new AccessTypeArray();
-        $fields->addFieldToTab('Root.Main', $acc->getAccessValues());
+        $eventAccess = CompositeField::create(
 
-        // IsEventFindaEvent
-        $fields->addFieldToTab('Root.EventFinda', CheckboxField::create('IsEventFindaEvent', 'Is EventFinda Event')
-            ->setDescription('Leave this checked if event has come from event finda'));
+            HeaderField::create('AccessDetails', 'Event Access'),
+            $acc->getAccessValues()
 
-        // EventFindaID
-        $fields->addFieldToTab('Root.EventFinda', TextField::create('EventFindaID', 'Id for event finda'));
+        );
 
-        // EventFindaURL
-        $fields->addFieldToTab('Root.EventFinda', TextField::create('EventFindaURL', 'Absolute url for event')
-            ->setDescription('If this event was generated by event finda this field will contain a value'));
+        $ticketDetails = CompositeField::create(
 
-        // Tags for calendar
-        $fields->addFieldToTab('Root.EventFindaImages', GridField::create(
-            'EventFindaImages',
-            'Event Finda Images on page',
-            $this->EventFindaImages(),
-            GridFieldConfig_RecordEditor::create()
-        ));
+            HeaderField::create('TicketDetails', 'Ticket Details'),
+            // TicketWebsite
+            TextField::create('TicketWebsite', 'Ticket Website')
+                ->setDescription('URL where tickets for this event can be purchased from'),
+            // TicketPhone
+            TextField::create('TicketPhone', 'Ticket Phone')
+                ->setDescription('Number to call to buy tickets'),
+            // BookingWebsite
+            TextField::create('BookingWebsite', 'Booking Website URL')
+                ->setDescription('Booking website URL')
+        );
 
-        $fields->addFieldToTab('Root.EventImages', $eventImages = UploadField::create('EventImages'));
+        $eventImages = UploadField::create('EventImages');
         //Set allowed upload extensions
         $eventImages->getValidator()->setAllowedExtensions(array('png', 'gif', 'jpg', 'jpeg'));
         // Create Folder for images
@@ -217,28 +209,58 @@ class Event extends DataObject {
         $makeDirectory = 'Uploads/' . $Year . '/' . $Month;
         $eventImages->setFolderName($makeDirectory);
         //$eventImages->setFolderName('event-Images');
-*/
 
+        $eventFindaDetails = CompositeField::create(
 
+            HeaderField::create('EventFindaDetails', 'Event Finda Details'),
+            // IsEventFindaEvent
+            ReadonlyField::create('IsEventFindaEvent', 'Is EventFinda Event')
+                ->setDescription('Leave this checked if event has come from event finda'),
+            // EventFindaID
+            TextField::create('EventFindaID', 'Id for event finda'),
+            // EventFindaURL
+            TextField::create('EventFindaURL', 'Absolute url for event')
+                ->setDescription('If this event was generated by event finda this field will contain a value')
+
+        );
+
+        $eventFindaImages = CompositeField::create(
+
+            GridField::create(
+                'EventFindaImages',
+                'Event Finda Images on page',
+                $this->EventFindaImages(),
+                GridFieldConfig_RecordEditor::create()
+            )
+
+        );
+
+        /**
+         * Field list and Tabs
+         */
         $fields = FieldList::create(
             $root = TabSet::create(
                 'Root',
                 new Tab('Main', 'Main Details',
                     $eventDetails,
-                    $eventLocation
-                )//,
-//                new Tab('PersonalDetails', 'Personal Details',
-//                    $personalDetails
-//                ),
-//                new Tab('ContactDetails', 'Contact Details',
-//                    $contactDetails
-//                ),
-//                new Tab('GPDetails', 'GP Details',
-//                    $gpDetails
-//                ),
-//                new Tab('IdentityDetails', 'Photo Identity',
-//                    $identityDetails
-//                )
+                    $eventLocation,
+                    $eventDateTime,
+                    $eventApproval,
+                    $eventRestrictions,
+                    $eventAccess
+                ),
+                new Tab('TicketDetails', 'Ticket Details',
+                    $ticketDetails
+                ),
+                new Tab('EventImages', 'Images',
+                    $eventImages
+                ),
+                new Tab('EventFinda', 'Event Finda Info',
+                    $eventFindaDetails
+                ),
+                new Tab('EventFindaImages', 'Finda Images',
+                    $eventFindaImages
+                )
             )
         );
 
