@@ -14,7 +14,11 @@
                 <h3>Date & Time</h3>
             </div>
             <div class="image-strip">
-                <a href=""><img class="img-responsive" src="http://via.placeholder.com/850x450"></a>
+                <% if $FindaImages %>
+                    <% loop $FindaImages %><img class="img-responsive" src="$URL"><% end_loop %>
+                <% else %>
+                    <a href=""><img class="img-responsive" src="http://via.placeholder.com/850x450"></a>
+                <% end_if %>
             </div>
             <div class="details-strip">
                 <p>Details like restrcietion and ticket details</p>
