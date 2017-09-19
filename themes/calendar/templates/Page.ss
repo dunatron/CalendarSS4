@@ -6,7 +6,7 @@
 <head>
 	<% base_tag %>
 	$MetaTags(false)
-    <title>One Ring Rentals: $Title</title>
+    <title>Happ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     <!-- IE6-8 support of HTML5 elements -->

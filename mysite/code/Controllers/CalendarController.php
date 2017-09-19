@@ -115,11 +115,15 @@ class CalendarPage_Controller extends PageController
         // Get Event by id
         $event = Event::get_by_id('Event', $eventID);
 
+        // Get associated event finda Images
+        $findaImages = $event->EventFindaImages();
+
         // Collect Data that we want to send to template
-        $eventData = array(
+        $eventData = [
             'EventTitle'    =>  $event->EventTitle,
             'EventDescription'  =>  $event->EventDescription,
-        );
+            'FindaImages'   =>  $findaImages
+        ];
 
         return $this->owner->customise($eventData)->renderWith('Modals/Includes/EventModalData');
     }
