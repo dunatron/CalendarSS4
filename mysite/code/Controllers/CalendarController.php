@@ -102,15 +102,25 @@ class CalendarPage_Controller extends PageController
 
     public function getEventData(HTTPRequest $request)
     {
+        // eventData = null;
+        $eventData = null;
+
+        // Decode Param Data
         $postBody = $request->getBody();
+        $decodeData = json_decode($postBody);
+        $paramData = $decodeData->data;
 
-        $decode = json_decode($postBody);
+        // Get the EventID
+        $eventID = intval($paramData->ID);
 
-        error_log(var_export('Black Hawk down', true));
-        error_log(var_export($decode, true));
+        $event = Event::get_by_id('Event', $eventID);
 
+        $eventData = array(
+            'EventTitle'    =>  $event->EventTitle
+        );
 
-        return json_encode('hello');
+        return json_encode($eventData);
+        //return $eventData;
     }
 
 }
