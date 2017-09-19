@@ -354,10 +354,7 @@ import axios from 'axios';
 
         let eventData = response.data;
 
-        console.log(eventData);
-
-        $('.title-strip').html = eventData.EventTitle;
-        $('.title-strip').replaceWith('ummmm');
+        $('.Modal__Data').replaceWith(eventData);
       })
       .catch(function (error) {
         alert(error);
