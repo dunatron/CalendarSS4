@@ -20,6 +20,12 @@ use SilverStripe\Forms\DateField;
 use SilverStripe\Forms\TimeField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\CompositeField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TabSet;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\FieldGroup;
 
 
 class Event extends DataObject {
@@ -97,14 +103,39 @@ class Event extends DataObject {
     );
 
     public function getCMSFields(){
-        $fields = parent::getCMSFields();
+        //$fields = parent::getCMSFields();
 
-        // EventTitle
-        $fields->addFieldToTab('Root.Main', TextField::create('EventTitle', 'Title:')
-            ->setDescription('e.g <strong>Little johnys bakeoff</strong>'));
-        //EventVenue
-        $fields->addFieldToTab('Root.Main', TextField::create('EventVenue', 'Venue:')
-            ->setDescription('e.g <strong>Entertainment Centre</strong>'));
+
+
+        $eventDetails = CompositeField::create(
+
+            HeaderField::create('EventDetails', 'Details'),
+            // EventTitle
+            TextField::create('EventTitle', 'Title:')
+                ->setDescription('e.g <strong>Little johnys bakeoff</strong>'),
+            // EventVenue
+            TextField::create('EventVenue', 'Venue:')
+                ->setDescription('e.g <strong>Entertainment Centre</strong>')
+        );
+
+        $eventLocation = CompositeField::create(
+
+            HeaderField::create('EventLocationDetails', 'Location Details'),
+            FieldGroup::create([
+                // LocationText
+                TextField::create('LocationText', 'Location:')
+                    ->setDescription('e.g <strong>182 Bowmar Rd, Waimumu 9774, New Zealand</strong>'),
+                // LocationLat
+                NumericField::create('LocationLat', 'Location latitude:')
+                    ->setDescription('e.g <strong>-46.1326615</strong>'),
+                // LocationLon
+                NumericField::create('LocationLon', 'Location longitude:')
+                    ->setDescription('e.g <strong>168.89592100000004</strong>')
+            ])
+        );
+
+/*
+
         // LocationText
         $fields->addFieldToTab('Root.Main', TextField::create('LocationText', 'Location:')
             ->setDescription('e.g <strong>182 Bowmar Rd, Waimumu 9774, New Zealand</strong>'));
@@ -186,6 +217,30 @@ class Event extends DataObject {
         $makeDirectory = 'Uploads/' . $Year . '/' . $Month;
         $eventImages->setFolderName($makeDirectory);
         //$eventImages->setFolderName('event-Images');
+*/
+
+
+        $fields = FieldList::create(
+            $root = TabSet::create(
+                'Root',
+                new Tab('Main', 'Main Details',
+                    $eventDetails,
+                    $eventLocation
+                )//,
+//                new Tab('PersonalDetails', 'Personal Details',
+//                    $personalDetails
+//                ),
+//                new Tab('ContactDetails', 'Contact Details',
+//                    $contactDetails
+//                ),
+//                new Tab('GPDetails', 'GP Details',
+//                    $gpDetails
+//                ),
+//                new Tab('IdentityDetails', 'Photo Identity',
+//                    $identityDetails
+//                )
+            )
+        );
 
         return $fields;
     }
