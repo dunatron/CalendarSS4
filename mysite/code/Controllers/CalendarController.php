@@ -21,7 +21,7 @@ use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\View\ThemeResourceLoader;
 use SilverStripe\Control\HTTPRequest;
-
+use SilverStripe\View\SSViewer;
 
 
 class CalendarPage_Controller extends PageController
@@ -102,15 +102,26 @@ class CalendarPage_Controller extends PageController
 
     public function getEventData(HTTPRequest $request)
     {
+        // eventData = null;
+        $eventData = null;
+
+        // Decode Param Data
         $postBody = $request->getBody();
+        $decodeData = json_decode($postBody);
+        $paramData = $decodeData->data;
 
-        $decode = json_decode($postBody);
+        // Get the EventID from parsed in data
+        $eventID = intval($paramData->ID);
+        // Get Event by id
+        $event = Event::get_by_id('Event', $eventID);
 
-        error_log(var_export('Black Hawk down', true));
-        error_log(var_export($decode, true));
+        // Collect Data that we want to send to template
+        $eventData = array(
+            'EventTitle'    =>  $event->EventTitle,
+            'EventDescription'  =>  $event->EventDescription,
+        );
 
-
-        return json_encode('hello');
+        return $this->owner->customise($eventData)->renderWith('Modals/Includes/EventModalData');
     }
 
 }
