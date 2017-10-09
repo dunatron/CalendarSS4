@@ -15,10 +15,12 @@ export default class Example extends Component {
     this.state = {};
 
     this.sampleStore = {
-      firstName: '',
+      testField: '',
       email: '',
       gender: '',
-      savedToCloud: false
+      savedToCloud: false,
+      DateTimes: []
+
     };
   }
 
@@ -35,6 +37,7 @@ export default class Example extends Component {
       ...this.sampleStore,
       ...update,
     }
+    console.log(this.sampleStore)
   }
 
   render() {

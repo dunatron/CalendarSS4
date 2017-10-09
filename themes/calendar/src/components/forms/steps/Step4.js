@@ -11,11 +11,13 @@ class Step4 extends Component {
     super(props);
 
     this.state = {
-      emailEmergency: props.getStore().emailEmergency
+      emailEmergency: props.getStore().emailEmergency,
+        testField: props.getStore().testField
     };
 
     this.validatorTypes = {
-      emailEmergency: Joi.string().email().required()
+      emailEmergency: Joi.string().email().required(),
+        testField: Joi.string().required()
     };
 
     this.getValidatorData = this.getValidatorData.bind(this);
@@ -46,6 +48,7 @@ class Step4 extends Component {
   getValidatorData() {
     return {
       emailEmergency: this.refs.emailEmergency.value,
+        testField: this.refs.testField.value
     };
   }
 
@@ -93,6 +96,28 @@ class Step4 extends Component {
                 />
 
                 {this.props.getValidationMessages('emailEmergency').map(this.renderHelpText)}
+              </div>
+            </div>
+
+            <div className="form-group col-md-12 content form-block-holder">
+              <label className="control-label col-md-4">
+                Your Test Data
+              </label>
+              <div className={notValidClasses.emailEmergencyCls}>
+                <input
+                    ref="testField"
+                    name="testField"
+                    autoComplete="off"
+                    type="text"
+                    className="form-control"
+                    placeholder="testField"
+                    required
+                    defaultValue={this.state.testField}
+                    onBlur={this.props.handleValidation('testField')}
+                    onChange={this.onChange.bind(this)}
+                />
+
+                  {this.props.getValidationMessages('testField').map(this.renderHelpText)}
               </div>
             </div>
             <div className="form-group hoc-alert col-md-12 form-block-holder">

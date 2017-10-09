@@ -57,7 +57,8 @@ class PageController extends ContentController
         'storeNewEvents',
         'getHappSecondaryTags',
         'UploadFormImages',
-        'getTicketOptionTemplate'
+        'getTicketOptionTemplate',
+        'storeEvent'
     );
 
     public function doInit()
@@ -80,6 +81,11 @@ class PageController extends ContentController
     public function ThemeDir()
     {
         return ThemeResourceLoader::inst()->getPath('calendar');
+    }
+
+    public function storeEvent()
+    {
+        return false;
     }
 
     public function HappEventForm()

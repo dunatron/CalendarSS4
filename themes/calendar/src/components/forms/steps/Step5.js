@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import Promise from 'promise';
+import axios from 'axios';
 
 export default class Step5 extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class Step5 extends Component {
       saving: true
     });
 
+    /**
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         this.setState({
@@ -48,8 +50,37 @@ export default class Step5 extends Component {
         // call resolve() to indicate that server validation or other aync method was a success.
         // ... only then will it move to the next step. reject() will indicate a fail
         resolve();
+        console.log(this.state);
         // reject(); // or reject
       }, 5000);
+    });
+     **/
+    /**
+     * Returning new axios promies response
+     */
+    return new Promise((resolve, reject) => {
+      axios.post('/pagefunction/storeEvent', {
+        Data: this.state
+      })
+        .then(response => {
+          console.log('=====The State====');
+          console.log(this.state);
+          console.log('======The Props=====');
+          console.log(this.props.getStore());
+          console.log('=====The Response=====')
+          console.log(response);
+
+          this.props.updateStore({savedToCloud: true});
+          resolve();
+        })
+        .catch(error => {
+          console.log('======Caught an error=======');
+          console.log(error);
+          console.log(error.response)
+          console.log(this.state);
+          this.props.updateStore({savedToCloud: false});
+          reject();
+        });
     });
   }
 
