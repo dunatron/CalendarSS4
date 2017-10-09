@@ -1,20 +1,64 @@
-// import React from 'react';
 'use strict';
-import React from 'react';
-import Multistep from '../addform/react-multistep/src/index';
-import { steps } from '../addform/index';
-export default class AddEventForm extends React.Component {
+
+import React, { Component } from 'react';
+import StepZilla from 'react-stepzilla';
+import Step1 from './steps/Step1';
+import Step2 from './steps/Step2';
+import Step3 from './steps/Step3';
+import Step4 from './steps/Step4';
+import Step5 from './steps/Step5';
+import Step6 from './steps/Step6';
+
+export default class Example extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    this.sampleStore = {
+      firstName: '',
+      email: '',
+      gender: '',
+      savedToCloud: false
+    };
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  getStore() {
+    return this.sampleStore;
+  }
+
+  updateStore(update) {
+    this.sampleStore = {
+      ...this.sampleStore,
+      ...update,
+    }
+  }
 
   render() {
+    const steps =
+      [
+        {name: 'Date', component: <Step1 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+        {name: 'Step2', component: <Step2 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+        {name: 'Step3', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+        {name: 'step4', component: <Step4 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+        {name: 'Review', component: <Step5 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
+        {name: 'Done', component: <Step6 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
+      ]
+
     return (
-      <div className="container">
-        <div>
-          <Multistep initialStep={1} steps={steps} />
-        </div>
-        <div className="container app-footer">
-          <h6>use arrow keys or progress bar to navigate form.</h6>
+      <div className='example'>
+        <div className='step-progress'>
+          <StepZilla
+            steps={steps}
+            preventEnterSubmission={true}
+            nextTextOnFinalActionStep={"Submit Event"}
+            hocValidationAppliedTo={[3]}
+          />
         </div>
       </div>
-    );
+    )
   }
 }

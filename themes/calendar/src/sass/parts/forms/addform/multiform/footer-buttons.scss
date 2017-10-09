@@ -1,0 +1,8 @@
+.footer-buttons {
+  @include cf;
+}
+
+#PlacesAutocomplete__autocomplete-container {
+  z-index: 99999999999999999999;
+  @include cf;
+}

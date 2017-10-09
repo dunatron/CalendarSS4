@@ -33,6 +33,7 @@ const StepFour = React.createClass({
             <span> Accept </span> </label>
           </div>
         </div>
+        <button type="submit" className="btn btn-default">Submit</button>
       </div>
     );},
 });
