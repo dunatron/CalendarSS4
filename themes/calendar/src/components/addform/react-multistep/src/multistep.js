@@ -16,22 +16,24 @@ export default class MultiStep extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.test = this.test.bind(this);
   }
 
   getNavStates(indx, length) {
     let styles = [];
     for (let i=0; i<length; i++) {
       if(i < indx) {
-        styles.push('done')
+        styles.push('done');
       }
       else if(i === indx) {
-        styles.push('doing')
+        styles.push('doing');
       }
       else {
-        styles.push('todo')
+        styles.push('todo');
       }
     }
-    return { current: indx, styles: styles }
+    return { current: indx, styles: styles };
   }
 
   checkNavState(currentStep){
@@ -39,26 +41,36 @@ export default class MultiStep extends Component {
       this.setState({
         showPreviousBtn: true,
         showNextBtn: true
-      })
+      });
     }
     else if(currentStep === 0) {
       this.setState({
         showPreviousBtn: false,
         showNextBtn: true
-      })
+      });
     }
     else {
       this.setState({
         showPreviousBtn: true,
         showNextBtn: false
-      })
+      });
     }
   }
 
+  handleSubmit(event) {
+    alert('Tried to add a form submit event' + this.state.value);
+    event.preventDefault();
+  }
+
+  test(event) {
+    alert('Tried to add a form submit event ;)' + this.state.value);
+    event.preventDefault();
+  }
+
   setNavState(next) {
-    this.setState({navState: this.getNavStates(next, this.props.steps.length)})
+    this.setState({navState: this.getNavStates(next, this.props.steps.length)});
     if (next < this.props.steps.length) {
-      this.setState({compState: next})
+      this.setState({compState: next});
     }
     this.checkNavState(next);
   }
@@ -67,41 +79,42 @@ export default class MultiStep extends Component {
     // if (evt.which === 13) {
     //   this.next()
     // }
-      if (evt.which === 39) {
-          this.next()
-      }
-      if (evt.which === 37) {
-          this.previous()
-      }
+    if (evt.which === 39) {
+      this.next();
+    }
+    if (evt.which === 37) {
+      this.previous();
+    }
   }
 
   handleOnClick(evt) {
     if (evt.currentTarget.value === (this.props.steps.length - 1) &&
       this.state.compState === (this.props.steps.length - 1)) {
-      this.setNavState(this.props.steps.length)
+      this.setNavState(this.props.steps.length);
     }
     else {
-      this.setNavState(evt.currentTarget.value)
+      this.setNavState(evt.currentTarget.value);
     }
+    evt.preventDefault();
   }
 
   next() {
-    this.setNavState(this.state.compState + 1)
+    this.setNavState(this.state.compState + 1);
   }
 
   previous() {
     if (this.state.compState > 0) {
-      this.setNavState(this.state.compState - 1)
+      this.setNavState(this.state.compState - 1);
     }
   }
 
   getClassName(className, i){
-    return className + "-" + this.state.navState.styles[i];
+    return className + '-' + this.state.navState.styles[i];
   }
 
   renderSteps() {
     return this.props.steps.map((s, i)=> (
-      <li className={this.getClassName("progtrckr", i)} onClick={this.handleOnClick} key={i} value={i}>
+      <li className={this.getClassName('progtrckr', i)} onClick={this.handleOnClick} key={i} value={i}>
         <em>{i+1}</em>
         <span>{this.props.steps[i].name}</span>
       </li>
@@ -112,19 +125,22 @@ export default class MultiStep extends Component {
 
     return (
       <div className="container" onKeyDown={this.handleKeyDown}>
-        <ol className="progtrckr">
-          {this.renderSteps()}
-        </ol>
-        {this.props.steps[this.state.compState].component}
-        <div style={this.props.showNavigation ? {} : this.hidden}>
-          <button style={this.state.showPreviousBtn ? {} : this.hidden}
-                  className="multistep__btn--prev"
-                  onClick={this.previous}>Previous</button>
+        <form onSubmit={this.test}>
+          <ol className="progtrckr">
+            {this.renderSteps()}
+          </ol>
+          {this.props.steps[this.state.compState].component}
+          <div style={this.props.showNavigation ? {} : this.hidden}>
+            <button style={this.state.showPreviousBtn ? {} : this.hidden}
+              className="multistep__btn--prev"
+              onClick={this.previous}>Previous</button>
 
-          <button style={this.state.showNextBtn ? {} : this.hidden}
-                  className="multistep__btn--next"
-                  onClick={this.next}>Next</button>
-        </div>
+            <button style={this.state.showNextBtn ? {} : this.hidden}
+              className="multistep__btn--next"
+              onClick={this.next}>Next</button>
+          </div>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

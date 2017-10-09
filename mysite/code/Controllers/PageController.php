@@ -913,6 +913,31 @@ Drop and drag files here or click to browse
         //return $this->owner->customise($data)->renderWith('Page_results');
     }
 
+    public function SendNewEventEmail($data)
+    {
+        // Only send email if 'EnquiryFormEmail' has been set in the CMS.
+        if (isset($this->EnquiryFormEmail) && !empty($this->EnquiryFormEmail)) {
+            // prepare email vars
+            $from = $data->EmailAddress;
+            $to = $this->EnquiryFormEmail;
+            $subject = $data->EnquiryType;
+
+            // create new email object
+            $email = new Email();
+            $email
+                ->setFrom($from)
+                ->setTo($to)
+                ->setSubject($subject)
+                ->setTemplate('NewEventEmailTemplate')
+                ->populateTemplate(new ArrayData([
+                    'Title' => $data->Title,
+                ]));
+            // send email
+            $email->send();
+        }
+
+    }
+
     public function getCalendarSVG()
     {
         $theme = $this->ThemeDir();
@@ -938,6 +963,12 @@ Drop and drag files here or click to browse
     }
 
     public function getSearchSVG()
+    {
+        $theme = $this->ThemeDir();
+        return file_get_contents('../' . $theme . '/svg/search_icon.svg');
+    }
+
+    public function getCloseSVG()
     {
         $theme = $this->ThemeDir();
         return file_get_contents('../' . $theme . '/svg/search_icon.svg');
