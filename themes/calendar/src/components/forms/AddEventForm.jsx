@@ -9,6 +9,7 @@ import Step4 from './steps/Step4';
 import Step5 from './steps/Step5';
 import Step6 from './steps/Step6';
 
+
 export default class Example extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +39,7 @@ export default class Example extends Component {
       savedToCloud: false,
       serverMessage:'',
       DateTimes: [],
+      MainCategory: [],
     };
   }
 
@@ -75,7 +77,7 @@ export default class Example extends Component {
             steps={steps}
             preventEnterSubmission={true}
             nextTextOnFinalActionStep={"Submit Event"}
-            hocValidationAppliedTo={[3]}
+            hocValidationAppliedTo={[1,3]}
           />
         </div>
       </div>

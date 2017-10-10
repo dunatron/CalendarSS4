@@ -59,7 +59,8 @@ class PageController extends ContentController
         'getHappSecondaryTags',
         'UploadFormImages',
         'getTicketOptionTemplate',
-        'storeEvent'
+        'storeEvent',
+        'getMainCategoryOptions'
     );
 
     public function doInit()
@@ -105,13 +106,13 @@ class PageController extends ContentController
         // Only send email if 'EnquiryFormEmail' has been set in the CMS.
         if (isset($from) && !empty($from)) {
 
+            $eventData = $this->setNewEventData($data);
+
             // create new email object
             $email = new Email();
             $email
                 ->setHTMLTemplate('NewEventEmailTemplate')
-                ->setData([
-                    'EventTitle' => $data->EventTitle
-                ])
+                ->setData($eventData)
                 ->setFrom($from)
                 ->setTo($to)
                 ->setSubject($subject);
@@ -119,6 +120,35 @@ class PageController extends ContentController
             $email->send();
         }
 
+    }
+
+
+    public function setNewEventData($data)
+    {
+        $templateArr = [];
+
+        foreach($data as $key => $value)
+        {
+            $templateArr[$key] = $value;
+        }
+
+        return $templateArr;
+    }
+
+    public function getMainCategoryOptions()
+    {
+        $tags = HappTag::get();
+        $optionsArr = [];
+
+        foreach ($tags as $t)
+        {
+            $option = new stdClass();
+            $option->value=$t->ID;
+            $option->label=$t->Title;
+            array_push($optionsArr, $option);
+        }
+
+        return json_encode($optionsArr);
     }
 
     public function processHappEvent($data, $form)

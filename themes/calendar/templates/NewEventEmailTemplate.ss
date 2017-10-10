@@ -365,48 +365,89 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <% if $EnquiryType || $EventTitle || $FirstName || $LastName %>
-                                            <p>
-                                                <% if $EnquiryType %><strong>$EnquiryType </strong><% end_if %>
-                                                from
-                                                <% if $EventTitle %>$EventTitle, <% end_if %>
-                                                <% if $FirstName %>$FirstName <% end_if %>
-                                                <% if $LastName %>$LastName<% end_if %>
-                                            </p>
-                                            <hr>
+                                        <%-- EventTitle --%>
+                                        <% if $EventTitle %>
+                                            <p>$EventTitle</p>
                                         <% end_if %>
-                                        <% if $EnquiryExtra %>
-                                            <p>
-                                                <strong>Important</strong>
-                                                <br>
-                                                $EnquiryExtra
-                                            </p>
-                                            <hr>
+                                        <%-- EventVenue --%>
+                                        <% if $EventVenue %>
+                                            <p>$EventVenue</p>
                                         <% end_if %>
-                                        <% if $UserFeedback %>
-                                            <p>$UserFeedback</p>
-                                            <hr>
+                                        <%-- LocationText --%>
+                                        <% if $LocationText %>
+                                            <p>$LocationText</p>
                                         <% end_if %>
-                                        <% if $FirstName || $Title || $LastName%>
-                                            <p><strong>Client details</strong></p>
-                                            <p>
-                                                <% if $Title %>$Title <% end_if %>
-                                                <% if $FirstName %>$FirstName<% end_if %>
-                                                <% if $LastName %>$LastName<% end_if %>
-                                            </p>
+                                        <%-- LocationLat --%>
+                                        <% if $LocationLat %>
+                                            <p>$LocationLat</p>
                                         <% end_if %>
-                                        <% if $Organisation %>
-                                            <p>$Organisation</p>
+                                        <%-- LocationLon --%>
+                                        <% if $LocationLon %>
+                                            <p>$LocationLon</p>
                                         <% end_if %>
-                                        <% if $EmailAddress %>
-                                            <p>$EmailAddress</p>
+                                        <%-- SpecLocation --%>
+                                        <% if $SpecLocation %>
+                                            <p>$SpecLocation</p>
                                         <% end_if %>
-                                        <% if $PostalAddress %>
-                                            <p>$PostalAddress</p>
+                                        <%-- EventDescription --%>
+                                        <% if $EventDescription %>
+                                            <p>$EventDescription</p>
                                         <% end_if %>
-                                        <% if $PhoneNumber %>
-                                            <p>$PhoneNumber</p>
+                                        <%-- EventDate --%>
+                                        <% if $EventDate %>
+                                            <p>$EventDate</p>
                                         <% end_if %>
+                                        <%-- StartTime --%>
+                                        <% if $StartTime %>
+                                            <p>$StartTime</p>
+                                        <% end_if %>
+                                        <%-- FinishTime --%>
+                                        <% if $FinishTime %>
+                                            <p>$FinishTime</p>
+                                        <% end_if %>
+                                        <%-- EventApproved --%>
+                                        <% if $EventApproved %>
+                                            <p>$EventApproved</p>
+                                        <% end_if %>
+                                        <%-- IsFree --%>
+                                        <% if $IsFree %>
+                                            <p>$IsFree</p>
+                                        <% end_if %>
+                                        <%-- BookingWebsite --%>
+                                        <% if $BookingWebsite %>
+                                            <p>$BookingWebsite</p>
+                                        <% end_if %>
+                                        <%-- TicketWebsite --%>
+                                        <% if $TicketWebsite %>
+                                            <p>$TicketWebsite</p>
+                                        <% end_if %>
+                                        <%-- TicketPhone --%>
+                                        <% if $TicketPhone %>
+                                            <p>$TicketPhone</p>
+                                        <% end_if %>
+                                        <%-- Restriction --%>
+                                        <% if $Restriction %>
+                                            <p>$Restriction</p>
+                                        <% end_if %>
+                                        <%-- SpecEntry --%>
+                                        <% if $SpecEntry %>
+                                            <p>$SpecEntry</p>
+                                        <% end_if %>
+                                        <%-- AccessType --%>
+                                        <% if $AccessType %>
+                                            <p>$AccessType</p>
+                                        <% end_if %>
+                                        <%-- IsEventFindaEvent --%>
+                                        <% if $IsEventFindaEvent %>
+                                            <p>$IsEventFindaEvent</p>
+                                        <% end_if %>
+                                        <% if $EventFindaID %>
+                                            <p>$EventFindaID</p>
+                                        <% end_if %>
+                                        <% if $EventFindaURL %>
+                                            <p>$EventFindaURL</p>
+                                        <% end_if %>
+
                                         <% if $ButtonURL && $ButtonText %>
                                             <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                                 <tbody>
