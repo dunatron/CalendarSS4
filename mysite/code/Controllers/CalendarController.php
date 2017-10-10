@@ -36,6 +36,16 @@ class CalendarPage_Controller extends PageController
     {
         //parent::init();
         parent::doInit();
+        Requirements::clear();
+
+        $themeFolder = $this->ThemeDir();
+        Requirements::set_write_js_to_body(false);
+
+        //Requirements::combine_files('scripts.js', $JSFiles);
+        Requirements::javascript($themeFolder . '/dist/vendor.bundle.js');
+        Requirements::javascript($themeFolder . '/dist/bootstrap.bundle.js');
+        Requirements::javascript('https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit');
+        Requirements::javascript($themeFolder . '/dist/app.bundle.js');
 
     }
 
