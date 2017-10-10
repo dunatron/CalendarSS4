@@ -37,7 +37,7 @@ export default class Example extends Component {
       gender: '',
       savedToCloud: false,
       serverMessage:'',
-      DateTimes: []
+      DateTimes: [],
     };
   }
 

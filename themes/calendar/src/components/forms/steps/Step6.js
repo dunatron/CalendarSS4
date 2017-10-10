@@ -8,7 +8,8 @@ export default class Step6 extends Component {
 
     this.state = {
       savedToCloud: props.getStore().savedToCloud,
-      serverMessage: props.getStore().serverMessage
+      serverMessage: props.getStore().serverMessage,
+      email: props.getStore.email,
     };
   }
 
@@ -32,6 +33,7 @@ export default class Step6 extends Component {
                     <div>
                       <h1>Thanks!</h1>
                       <h2>Data was successfully saved to cloud...</h2>
+                      <p>event details sent to {this.state.email}</p>
                       <p>{this.state.serverMessage}</p>
                     </div>
                     :

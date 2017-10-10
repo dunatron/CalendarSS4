@@ -365,11 +365,11 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <% if $EnquiryType || $Title || $FirstName || $LastName %>
+                                        <% if $EnquiryType || $EventTitle || $FirstName || $LastName %>
                                             <p>
                                                 <% if $EnquiryType %><strong>$EnquiryType </strong><% end_if %>
                                                 from
-                                                <% if $Title %>$Title, <% end_if %>
+                                                <% if $EventTitle %>$EventTitle, <% end_if %>
                                                 <% if $FirstName %>$FirstName <% end_if %>
                                                 <% if $LastName %>$LastName<% end_if %>
                                             </p>

@@ -125,7 +125,7 @@ export default class Step5 extends Component {
 
           console.log(response);
           PROPS.updateStore({savedToCloud: true});
-          PROPS.updateStore({serverMessage: 'The real update text'});
+          PROPS.updateStore({serverMessage: data.EmailTo});
           console.log('++++++UPDATED++++++++');
           console.log(PROPS.getStore());
           console.log('=======.then headers======');

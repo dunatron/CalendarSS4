@@ -25,6 +25,7 @@ use SilverStripe\Forms\OptionsetField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Assets\Image;
+use SilverStripe\Control\Email\Email;
 
 
 class PageController extends ContentController
@@ -88,344 +89,36 @@ class PageController extends ContentController
         $vars = $request->getBody();
         $data = json_decode($vars);
 
+        // Send email to client & user
+        $this->SendNewEventEmail('no-reply@server.com', 'test@test.com', 'test', $data);
+
         // Create New Event here and then return a response to react and axios
         return json_encode([
             'Success'   =>  true,
-            'ServerMessage' =>  'My Test Title'
+            'ServerMessage' =>  'My Test Title will be dynamic',
+            'EmailTo'   =>  $data->email
         ]);
-
-        return true;
     }
 
-    public function HappEventForm()
+    public function SendNewEventEmail($from, $to, $subject, $data)
     {
-        /**
-         * NOTE: The ->setRightTitle is being used in a custom form template and by Vue.
-         * It is using it to match the Vue Title and to check for validation.
-         */
-        //-----> Start Step One
-        $stepOneStart = LiteralField::create('StepOneStart', '<div id="StepOne" class="form-step">');
+        // Only send email if 'EnquiryFormEmail' has been set in the CMS.
+        if (isset($from) && !empty($from)) {
+
+            // create new email object
+            $email = new Email();
+            $email
+                ->setHTMLTemplate('NewEventEmailTemplate')
+                ->setData([
+                    'EventTitle' => $data->EventTitle
+                ])
+                ->setFrom($from)
+                ->setTo($to)
+                ->setSubject($subject);
+            // send email
+            $email->send();
+        }
 
-        $bootstrapDate = LiteralField::create('BootstrapDatePicker', '<div class="Bootstrap__DatePicker"></div>');
-        $calendarOptions = LiteralField::create('CalendarOptions', '<div class="Calendar__Options">
-<span id="CalendarSingle" class="Higlight__Option">Single</span>
-<!--<span id="CalendarReccuring">Recurring</span>-->
-<span id="CalendarMultiDay">Multi Day</span></div> ');
-        $date = DateField::create('EventDate', 'Date of the event');
-        $startTime = TextField::create('StartTime', 'Event start time');
-        $finishTime = TextField::create('FinishTime', 'Event finish time');
-        $generateDates = LiteralField::create('GenerateDates', '<div class="clearfix"></div><div @click="generateDates" class="Generate__Dates"><p class="generate_date_text">Generate Dates</p></div>');
-
-        $generatedDates = LiteralField::create('GeneratedDates', '<ul class="Event__Dates">
-    <li class="Date__Object" v-for="Date in Dates">
-        <span class="Date">{{ Date.DateObject.EventDate }}</span>
-        <input type="time" class="Generated__Time" v-bind:value="Date.DateObject.StartTime" v-model="Date.DateObject.StartTime">
-        <input type="time" class="Generated__Time" v-bind:value="Date.DateObject.EndTime" v-model="Date.DateObject.EndTime">
-    </li>
-</ul>');
-
-        $StepOneNext = LiteralField::create('StepOneNext', '<div v-show="Dates[0]" class="add-event-controls"><div @click="stepOneForwardProgress" id="StepOneNext" class="add-event-next"><span>next</span></div></div>');
-
-        $stepOneEnd = LiteralField::create('StepOneEnd', '</div>');
-        //-----> End Step One
-
-
-        //-----> Start Step Two
-        $stepTwoStart = LiteralField::create('StepTwoStart', '<div id="StepTwo" class="form-step field-hidden clearfix">');
-
-        $stepTwoWrapStart = LiteralField::create('','<div class="step-content-wrap clearfix">');
-        $stepTwoLeft = CompositeField::create(
-        // Title
-            $Title = TextField::create('Title', 'What is the name of your event?')
-                ->setAttribute('required', true)
-                ->setAttribute('v-model', 'Title')
-                ->setAttribute('v-validate.initial', '{ rules: "required|min:5|max:80", arg: "Title", scope: "validateAddEvent" }')
-//            ->setAttribute('data-vv-rules', 'required|min:5|max:80')
-                ->setRightTitle('Title')
-                ->setAttribute('placeholder', 'e.g. Dunedin comedy night'),
-
-            // Description
-            $Description = TextareaField::create('Description', 'Write a brief description of your event')
-                ->setAttribute('required', true)
-                ->setAttribute('v-model', 'Description')
-                ->setAttribute('v-validate.initial', '{ rules: "required|min:5|max:500", arg: "Description", scope: "validateAddEvent" }')
-//            ->setAttribute('data-vv-rules', 'required|min:10')
-                ->setRightTitle('Description')
-                ->setAttribute('placeholder','e.g A night of local dunedin comedians, A collection of the best from around Dunedin coming together for one night only come on down for a night of fun filled laughter at the Fortune Theatre'),
-
-            $MainTag = DropdownField::create('HappTag', 'Choose Main Tag',
-                $this->getHappTags())
-                ->addExtraClass('search')
-                ->setAttribute('data-style', 'btn-primary')
-                ->setAttribute('title', 'Choose a primary tag')
-                ->setAttribute('v-model', 'HappTag'),
-
-            $SecondaryTag = DropdownField::create('SecondaryTag', 'Choose Secondary Tag',
-                $this->getSecondaryTags())
-                ->addExtraClass('search')
-                ->setAttribute('data-style', 'btn-primary')
-                ->setAttribute('title', 'Choose a secondary tag')
-                ->setAttribute('disabled', 'disabled')
-                ->setAttribute('v-model', 'SecondaryTag')
-        )->addExtraClass('Left');
-
-        $stepTwoRight = CompositeField::create(
-        // Vue Clip : https://www.youtube.com/watch?v=84_SwbPWjKo
-        // https://www.npmjs.com/package/vue-clip
-        // https://npm.runkit.com/vue-clip
-            $vueClip = LiteralField::create('VueClip', '<vue-clip :options="options" :on-added-file="fileAdded" :on-complete="complete">
-<template slot="clip-uploader-action" scope="props">
-<div class="uploader-action" v-bind:class="{dragging: props.dragging}">
-<div class="dz-message">
-Drop and drag files here or click to browse
-</template>
-<template slot="clip-uploader-body" scope="props">
-<div class="uploader-files">
-<div class="uploader-file" v-for="file in props.files">
-<div class="file-avatar">
-<img v-bind:src="file.dataUrl" alt="" class="img-responsive">
-</div>
-<div class="file-details">
-<div class="file-name">
-    {{ file.name }}
-</div>
-<div class="file-progress" v-if="file.status !== \'error\' && file.status !== \'success\' ">
-<span class="progress-indicator" v-bind:style="{width: file.progress}"></span>
-</div>
-<div class="file-meta">
-<span class="file-size">{{ file.size }}</span>
-<span class="file-status">{{ file.status }}</span>
-<span class="file-status">{{ file.errorMessage }}</span>
-</div>
-</div>
-
-</div>
-</div>
-</template>
-</vue-clip>')
-        )->addExtraClass('Right');
-
-        $stepTwoWrapEnd = LiteralField::create('','</div>');
-
-        $StepTwoBack = LiteralField::create('StepTwoBack', '<div class="add-event-controls"><div @click="stepTwoBackProgress" id="StepTwoBack" class="add-event-back"><span>back</span></div>');
-        $StepTwoNext = LiteralField::create('StepTwoNext', '<div @click="stepTwoForwardProgress"
-            v-show="fields.$validateAddEvent && fields.$validateAddEvent.Title.dirty && fields.$validateAddEvent.Description.dirty && !errors.has(\'validateAddEvent.Title\') && !errors.has(\'validateAddEvent.Description\') "
-            id="StepTwoNext" class="add-event-next"><span>next</span></div></div>');
-
-
-        $stepTwoEnd = LiteralField::create('StepTwoEnd', '</div>');
-        //-----> End Step Two
-
-
-        //-----> Start Step Three
-
-        $stepThreeStart = LiteralField::create('StepThreeStart', '<div id="StepThree" class="form-step field-hidden">');
-        $stepThreeWrapStart = LiteralField::create('','<div class="step-content-wrap clearfix">');
-        $stepThreeLeft = CompositeField::create(
-            $venueName = TextField::create('EventVenue', 'What is the name of the venue?'),
-
-            $vueGoogleMap = LiteralField::create('VueMap', '
-<label for="map" class="left">What is the street address/location</label>
- <vue-google-autocomplete
-                    id="map"
-                    Type="establishment"
-                    classname="vue-autocomplete"
-                    placeholder="231 Stuart Street, Dunedin, New Zealand"
-                    v-on:placechanged="getAddressData"
-                    country="NZ" 
-                    style="width: 100%"
-                >
-                </vue-google-autocomplete>'),
-
-            //$mapData = LiteralField::create('MapData', '<h1 v-text="address"></h1>');
-            $map = LiteralField::create('googleMap', '<div v-show="address.latitude" id="addEventMap" style="width: 100%; height: 400px;"></div>')
-        )->addExtraClass('Left');
-        $stepThreeRight = CompositeField::create(
-//            TextField::create('SpecialLocationInstructions')
-            LiteralField::create('', '<button id="spec-location-btn" class="spec__btn">Add...</button><p style="text-align: center;">(special location instructions)</p>'),
-            CompositeField::create(
-                LiteralField::create('', $this->getCloseSVG()),
-                TextField::create('SpecialLocationInstructions')
-                    ->setAttribute('v-model', 'specLocation')
-            )->addExtraClass('special-location-wrapper')->addExtraClass('special-close')
-        )->addExtraClass('Right');
-
-
-        $stepThreeWrapEnd = LiteralField::create('','</div>');
-
-        $StepThreeBack = LiteralField::create('StepThreeBack', '<div class="add-event-controls"><div @click="stepThreeBackProgress" id="StepThreeBack" class="add-event-back"><span>back</span></div>');
-        $StepThreeNext = LiteralField::create('StepThreeNext', '<div @click="stepThreeForwardProgress" id="StepThreeNext" class="add-event-next"><span>next</span></div></div>');
-
-        $stepThreeEnd = LiteralField::create('StepThreeEnd', '</div>');
-        //-----> End Step Three
-
-
-        //-----> Start Step Four
-
-        $stepFourStart = LiteralField::create('StepFourStart', '<div id="StepFour" class="form-step field-hidden">');
-        $stepFourWrapStart = LiteralField::create('','<div class="step-content-wrap clearfix">');
-        $stepFourLeft = CompositeField::create(
-        // Restriction
-            $restrictions = DropdownField::create('Restriction',
-                'Restrictions for event',
-                EventRestriction::get()->map('ID', 'Description')->toArray(),
-                null,
-                true
-            )
-                ->setAttribute('v-model', 'Restriction')
-                ->setAttribute('v-validate.initial', '{ rules: "required", arg: "Restriction", scope: "validate-add-event" }')
-//            ->setAttribute('data-vv-rules', 'required')
-                ->setRightTitle('Restriction')
-                ->setAttribute('title', 'Select entry restriction...')
-                ->addExtraClass('search'),
-
-            $hasTicketHeader = HeaderField::create('Does your event have tickets?', 'ummm'),
-
-            $ticketOptions = LiteralField::create('', '<div class="notsopretty success">
-  <input type="radio" value="yes" v-model="HasTickets"> 
-  <label class="ticket__check"><i class="default"></i> Yes</label>
-</div>
-<div class="notsopretty success">
-  <input type="radio" value="no" v-model="HasTickets"> 
-  <label class="ticket__check"><i class="default"></i> No</label>
-</div>
-'),
-
-            TextField::create('BookingWebsite', 'BookingWebsite')
-                ->setAttribute('placeholder', 'Copy and paste the direct URL to purchase tickets')
-                ->setAttribute('v-show', 'HasTickets === "yes"')
-                ->setAttribute('v-model', 'BookingWebsite')
-
-        )->addExtraClass('Left');
-        $stepFourRight = CompositeField::create(
-            LiteralField::create('', '<button id="spec-entry-btn" class="spec__btn">Add...</button><p style="text-align: center;">(special entry instructions)</p>'),
-            CompositeField::create(
-                LiteralField::create('', $this->getCloseSVG()),
-                TextField::create('SpecialEntryInstructions')
-                    ->setAttribute('v-model', 'specEntry')
-            )->addExtraClass('special-entry-wrapper')->addExtraClass('special-close')
-
-        )->addExtraClass('Right');
-
-
-        $stepFourWrapEnd = LiteralField::create('','</div>');
-
-        $StepFourBack = LiteralField::create('StepFourBack', '<div class="add-event-controls"><div @click="stepFourBackProgress" id="StepFourBack" class="add-event-back"><span>back</span></div>');
-        $StepFourNext = LiteralField::create('StepFourNext', '<div @click="stepFourForwardProgress" id="StepFourNext" class="add-event-next"><span>next</span></div></div>');
-
-        $stepFourEnd = LiteralField::create('StepFourEnd', '</div>');
-        //-----> End Step Four
-
-
-        $ticket = CheckboxField::create('HasTickets', 'Check if event has tickets')
-            ->setAttribute('id', 'hasTickets')
-            ->setAttribute('v-model', 'HasTickets');
-
-        $detailsNext = LiteralField::create('detailsNextBtn', '<div @click="detailsForwardProgress" v-show="!errors.has(\'validate-add-event.Title\') && !errors.has(\'validate-add-event.Description\') " class="add-event-controls"><div id="detailsNextBtn" class="add-event-next"><span>next</span></div></div>');
-
-
-        //--> Ticket Step
-        $ticketStart = LiteralField::create('TicketStart', '<div id="ticket-step" class="form-step field-hidden">');
-
-        //$restrictionError = LiteralField::create('restrictionError', '<p class="text-danger" v-if="errors.has(\'Restriction\')">{{ errors.first(\'Restriction\') }}</p>');
-
-        $acc = new AccessTypeArray();
-        $acc->getAccessValues();
-        $ticketBack = LiteralField::create('ticketBackBtn', '<div class="add-event-controls"> <div id="ticketBackBtn"  @click="ticketBackProgress" class="add-event-back"><span>back</span></div>');
-        $ticketNext = LiteralField::create('ticketNextBtn', '<div v-show="!errors.has(\'validate-add-event.Restriction\')" id="ticketNextBtn" @click="ticketForwardProgress" class="add-event-next"><span>next</span></div></div>');
-
-        $access = $acc->getAccessValues();
-        $ticketEnd = LiteralField::create('TicketEnd', '</div>');
-
-        //--> Ticket Website (Option 5 is selected for radio option field)
-        $ticWebStart = LiteralField::create('TicWebStart', '<div id="ticket-web-step" class="form-step field-hidden">');
-        $website = TextField::create('TicketWebsite', 'Ticket website');
-        $phone = TextField::create('TicketPhone', 'Ticket provider phone number');
-        $ticketWebBack = LiteralField::create('ticketWebBack', '<div class="add-event-controls"><div @click="websiteBackProgress" id="ticketWebBack" class="add-event-back"><span>back</span></div>');
-        $ticketWebNext = LiteralField::create('ticketWebNext', '<div @click="websiteForwardProgress" id="ticketWebNext" class="add-event-next"><span>next</span></div></div>');
-        $ticWebEnd = LiteralField::create('TicWebEnd', '</div>');
-
-        $locationStart = LiteralField::create('LocationStart', '<div id="location-step" class="form-step field-hidden">');
-        $locationField = TextField::create('LocationText')->setAttribute('id', 'addEventAddress');
-        $locLat = HiddenField::create('LocationLat', 'Location Latitude')->setAttribute('id', 'addEventLat');
-        $locLong = HiddenField::create('LocationLon', 'Location Longitude')->setAttribute('id', 'addEventLon');
-        $locRadius = HiddenField::create('LocationRadius', 'Radius of the event')->setAttribute('id', 'addEventRadius');
-
-
-        $locationBack = LiteralField::create('LocationBack', '<div class="add-event-controls"><div @click="locationBackProgress" id="locationBack" class="add-event-back"><span>back</span></div>');
-        $locationNext = LiteralField::create('LocationNext', '<div @click="locationForwardProgress" id="locationNext" class="add-event-next"><span>next</span></div></div>');
-        $locationEnd = LiteralField::create('LocationEnd', '</div>');
-
-        //--> Date Step
-        $dateStart = LiteralField::create('DateStart', '<div id="date-step" class="form-step field-hidden">');
-
-        $dateEnd = LiteralField::create('DateEnd', '</div>');
-
-        //--> Finish Step
-        $finishStepStart = LiteralField::create('finishStepStart', '<div id="finish-step" class="form-step field-hidden">');
-
-        $evaluateData = LiteralField::create('EvaluateFormData', '<h1>Hello Tron</h1>');
-
-        $finishBack = LiteralField::create('FinishBack', '<div class="add-event-controls"><div id="finishBack" @click="finishBackProgress" class="add-event-back"><span>back</span></div></div>');
-
-        $finishStepEnd = LiteralField::create('finishStepEnd', '</div>');
-
-        //--> Global elements
-        $formProgress = LiteralField::create('formProgress', '<radial-progress-bar :diameter="100"
-                       :completed-steps="completedSteps"
-                       :total-steps="totalSteps"
-                       :animate-speed="animateSpeed"
-                       :stroke-width="strokeWidth"
-                       :start-color="startColor"
-                       :stop-color="stopColor"
-                       :inner-stroke-color="innerStrokeColor"
-                       >
-<p>{{ completedSteps }}/{{ totalSteps }}</p>
-<p>Steps</p>
-  </radial-progress-bar>');
-
-        $fields = new FieldList(
-            $stepOneStart, $bootstrapDate, $calendarOptions, $startTime, $finishTime, $generateDates, $generatedDates, $StepOneNext, $stepOneEnd,
-            $stepTwoStart, $stepTwoWrapStart, $stepTwoLeft, $stepTwoRight, $stepTwoWrapEnd, $StepTwoBack, $StepTwoNext, $stepTwoEnd,
-            $stepThreeStart, $stepThreeWrapStart, $stepThreeLeft, $stepThreeRight, $stepThreeWrapEnd, $StepThreeBack, $StepThreeNext, $stepThreeEnd,
-            $stepFourStart, $stepFourWrapStart, $stepFourLeft, $stepFourRight, $stepFourWrapEnd, $StepFourBack, $StepFourNext, $stepFourEnd
-        );
-
-
-        $actions = new FieldList(
-            FormAction::create('processHappEvent', 'Submit')
-                ->addExtraClass('field-hidden happ_btn')
-                ->setAttribute('id', 'submitHappEvent')
-                ->setAttribute('@click.prevent', 'submitNewEvents')
-//                ->setAttribute('@click.prevent', 'onSubmit')
-                ->setUseButtonTag(true)
-                ->setTemplate('RecaptchaSubmit')
-        );
-
-        $actions->push(
-        //ResetFormAction::create('ClearAction', 'Clear')
-            FormAction::create('ClearAction', 'Clear')->setAttribute('type', 'reset')
-        );
-
-        $required = RequiredFields::create(array(
-            'EventTitle'
-        ));
-
-        $form = Form::create($this, 'HappEventForm', $fields, $actions, $required)->addExtraClass('happ-add-event-form');
-        $form->setTemplate('AddEventTemplate');
-        $form->setAttribute('data-vv-scope', 'validate-add-event')->disableSecurityToken();
-
-        /**
-         * Recaptcha Options
-         * https://developers.google.com/recaptcha/docs/display#render_param
-         */
-
-//        $data = Session::get("FormData.{$form->getName()}.data");
-
-        $data = PageController::curr()->getRequest()->getSession()->get("FormData.{$form->getName()}.data");
-
-
-        return $data ? $form->loadDataFrom($data) : $form;
     }
 
     public function processHappEvent($data, $form)
@@ -928,30 +621,7 @@ Drop and drag files here or click to browse
         //return $this->owner->customise($data)->renderWith('Page_results');
     }
 
-    public function SendNewEventEmail($data)
-    {
-        // Only send email if 'EnquiryFormEmail' has been set in the CMS.
-        if (isset($this->EnquiryFormEmail) && !empty($this->EnquiryFormEmail)) {
-            // prepare email vars
-            $from = $data->EmailAddress;
-            $to = $this->EnquiryFormEmail;
-            $subject = $data->EnquiryType;
 
-            // create new email object
-            $email = new Email();
-            $email
-                ->setFrom($from)
-                ->setTo($to)
-                ->setSubject($subject)
-                ->setTemplate('NewEventEmailTemplate')
-                ->populateTemplate(new ArrayData([
-                    'Title' => $data->Title,
-                ]));
-            // send email
-            $email->send();
-        }
-
-    }
 
     public function getCalendarSVG()
     {
