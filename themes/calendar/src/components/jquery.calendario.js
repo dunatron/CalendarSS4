@@ -344,10 +344,17 @@ import axios from 'axios';
 
   function getEventData(ID)
   {
-    axios.post('/calendarfunction/getEventData', {
+    axios({
+      method: 'post',
+      url: '/calendarfunction/getEventData',
       data: {
         ID: ID,
       },
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest',
+      }
     })
       .then(response => {
         console.log(response);

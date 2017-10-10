@@ -15,12 +15,29 @@ export default class Example extends Component {
     this.state = {};
 
     this.sampleStore = {
+      EventTitle: '',
+      EventVenue:'',
+      LocationText:'',
+      LocationLat:'',
+      LocationLon:'',
+      SpecLocation:'',
+      EventDescription:'',
+      EventDate:'',
+      StartTime:'',
+      FinishTime:'',
+      IsFree:'',
+      BookingWebsite:'',
+      TicketWebsite:'',
+      TicketPhone:'',
+      Restriction:'',
+      SpecEntry:'',
+      AccessType:'',
       testField: '',
       email: '',
       gender: '',
       savedToCloud: false,
+      serverMessage:'',
       DateTimes: []
-
     };
   }
 

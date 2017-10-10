@@ -7,7 +7,8 @@ export default class Step6 extends Component {
     super(props);
 
     this.state = {
-      savedToCloud: props.getStore().savedToCloud
+      savedToCloud: props.getStore().savedToCloud,
+      serverMessage: props.getStore().serverMessage
     };
   }
 
@@ -27,19 +28,20 @@ export default class Step6 extends Component {
               <label className="col-md-12 control-label">
                 {
                   (this.state.savedToCloud)
-                  ?
+                    ?
                     <div>
                       <h1>Thanks!</h1>
                       <h2>Data was successfully saved to cloud...</h2>
+                      <p>{this.state.serverMessage}</p>
                     </div>
-                  :
-                    <h1>You have updated data, go <a onClick={() => {this.props.jumpToStep(4)}}>back</a> and Save again!</h1>
+                    :
+                    <h1>You have updated data, go <a onClick={() => {this.props.jumpToStep(4);}}>back</a> and Save again!</h1>
                 }
               </label>
-              </div>
+            </div>
           </form>
         </div>
       </div>
-    )
+    );
   }
 }

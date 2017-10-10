@@ -83,9 +83,18 @@ class PageController extends ContentController
         return ThemeResourceLoader::inst()->getPath('calendar');
     }
 
-    public function storeEvent()
+    public function storeEvent(HTTPRequest $request)
     {
-        return false;
+        $vars = $request->getBody();
+        $data = json_decode($vars);
+
+        // Create New Event here and then return a response to react and axios
+        return json_encode([
+            'Success'   =>  true,
+            'ServerMessage' =>  'My Test Title'
+        ]);
+
+        return true;
     }
 
     public function HappEventForm()

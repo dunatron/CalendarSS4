@@ -12,12 +12,12 @@ class Step4 extends Component {
 
     this.state = {
       emailEmergency: props.getStore().emailEmergency,
-        testField: props.getStore().testField
+      testField: props.getStore().testField
     };
 
     this.validatorTypes = {
       emailEmergency: Joi.string().email().required(),
-        testField: Joi.string().required()
+      testField: Joi.string().required()
     };
 
     this.getValidatorData = this.getValidatorData.bind(this);
@@ -48,7 +48,7 @@ class Step4 extends Component {
   getValidatorData() {
     return {
       emailEmergency: this.refs.emailEmergency.value,
-        testField: this.refs.testField.value
+      testField: this.refs.testField.value
     };
   }
 
@@ -105,19 +105,19 @@ class Step4 extends Component {
               </label>
               <div className={notValidClasses.emailEmergencyCls}>
                 <input
-                    ref="testField"
-                    name="testField"
-                    autoComplete="off"
-                    type="text"
-                    className="form-control"
-                    placeholder="testField"
-                    required
-                    defaultValue={this.state.testField}
-                    onBlur={this.props.handleValidation('testField')}
-                    onChange={this.onChange.bind(this)}
+                  ref="testField"
+                  name="testField"
+                  autoComplete="off"
+                  type="text"
+                  className="form-control"
+                  placeholder="testField"
+                  required
+                  defaultValue={this.state.testField}
+                  onBlur={this.props.handleValidation('testField')}
+                  onChange={this.onChange.bind(this)}
                 />
 
-                  {this.props.getValidationMessages('testField').map(this.renderHelpText)}
+                {this.props.getValidationMessages('testField').map(this.renderHelpText)}
               </div>
             </div>
             <div className="form-group hoc-alert col-md-12 form-block-holder">

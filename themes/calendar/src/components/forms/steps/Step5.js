@@ -39,49 +39,119 @@ export default class Step5 extends Component {
     });
 
     /**
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.setState({
-          saving: true
-        });
+    this.props.updateStore({savedToCloud: true});
 
-        this.props.updateStore({savedToCloud: true});  // Update store here (this is just an example, in reality you will do it via redux or flux)
+    axios({
+      method: 'post',
+      url: '/pagefunction/storeEvent',
+      data: this.props.getStore(),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With': 'XMLHttpRequest',
+      }
+    })
+      .then(response => {
+        let data = response.data;
+        let status = response.status;
+        let statusText = response.statusText;
+        let headers = response.headers;
+        let config = response.config;
 
-        // call resolve() to indicate that server validation or other aync method was a success.
-        // ... only then will it move to the next step. reject() will indicate a fail
-        resolve();
+
+        console.log('=====The State====');
         console.log(this.state);
-        // reject(); // or reject
-      }, 5000);
-    });
+        console.log('======The Props=====');
+        console.log(this.props.getStore());
+        console.log('=====The Response=====')
+
+
+        if(response.data.Success === true)
+        {
+          console.log('your onto something here');
+          console.log('Server Response: ' + data.Success);
+        }
+
+        // something has gone wrong on the server
+
+        // something has gone wrong on the client end
+
+        // 200: every thing has gone well
+
+        this.props.updateStore({savedToCloud: true});
+
+        console.log('=======.then headers======');
+        console.log('====data====');
+        console.log(data);
+        console.log('====status====');
+        console.log(status);
+        console.log('====statusText====');
+        console.log(statusText);
+        console.log('====headers====');
+        console.log(headers);
+        console.log('====config====');
+        console.log(config);
+
+      })
+      .catch(error => {
+        console.log('======Caught an error=======');
+        console.log(error);
+        console.log(error.response)
+        console.log(this.state);
+        this.props.updateStore({savedToCloud: false});
+
+      });
      **/
-    /**
-     * Returning new axios promies response
-     */
-    return new Promise((resolve, reject) => {
-      axios.post('/pagefunction/storeEvent', {
-        Data: this.state
+    let PROPS = this.props;
+
+    return new Promise(function (resolve, reject) {
+      axios({
+        method: 'post',
+        url: '/pagefunction/storeEvent',
+        data: PROPS.getStore(),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'X-Requested-With': 'XMLHttpRequest',
+        }
       })
         .then(response => {
-          console.log('=====The State====');
-          console.log(this.state);
-          console.log('======The Props=====');
-          console.log(this.props.getStore());
-          console.log('=====The Response=====')
-          console.log(response);
 
-          this.props.updateStore({savedToCloud: true});
+          let data = response.data;
+          let status = response.status;
+          let statusText = response.statusText;
+          let headers = response.headers;
+          let config = response.config;
+
+          console.log(response);
+          PROPS.updateStore({savedToCloud: true});
+          PROPS.updateStore({serverMessage: 'The real update text'});
+          console.log('++++++UPDATED++++++++');
+          console.log(PROPS.getStore());
+          console.log('=======.then headers======');
+          console.log('====data====');
+          console.log(data);
+          // data.ServerMessage
+          // data.Success
+          console.log('====status====');
+          console.log(status);
+          console.log('====statusText====');
+          console.log(statusText);
+          console.log('====headers====');
+          console.log(headers);
+          console.log('====config====');
+          console.log(config);
           resolve();
         })
         .catch(error => {
           console.log('======Caught an error=======');
           console.log(error);
           console.log(error.response)
-          console.log(this.state);
-          this.props.updateStore({savedToCloud: false});
+          PROPS.updateStore({savedToCloud: false});
           reject();
         });
     });
+
   }
 
   jumpToStep(toStep) {
@@ -136,6 +206,6 @@ export default class Step5 extends Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
