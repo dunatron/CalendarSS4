@@ -1,5 +1,5 @@
-/* jslint browser: true*/
-/* global $, jQuery, happLoader*/
+/* jslint browser: true */
+/* global $, jQuery, happLoader */
 
 /**
  * Modal selectors
@@ -36,28 +36,28 @@ function modalIsResizable(modal) {
 /**
  * eventModal
  */
-modalIsDraggable(eventModal);
-modalIsResizable(eventModal);
+// modalIsDraggable(eventModal);
+// modalIsResizable(eventModal);
 modalBodyIsScrollable(eventModal);
 
 /**
  * addEventModal
  */
-modalIsDraggable(addEventModal);
-modalIsResizable(addEventModal);
+// modalIsDraggable(addEventModal);
+// modalIsResizable(addEventModal);
 modalBodyIsScrollable(addEventModal);
 
 /**
  * filterModal
  */
-modalIsDraggable(filterModal);
-modalIsResizable(filterModal);
+// modalIsDraggable(filterModal);
+// modalIsResizable(filterModal);
 modalBodyIsScrollable(filterModal);
 
 /**
  * searchModal
  */
-modalIsDraggable(searchModal);
-modalIsResizable(searchModal);
+// modalIsDraggable(searchModal);
+// modalIsResizable(searchModal);
 modalBodyIsScrollable(searchModal);
 

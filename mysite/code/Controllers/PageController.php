@@ -60,7 +60,7 @@ class PageController extends ContentController
         'UploadFormImages',
         'getTicketOptionTemplate',
         'storeEvent',
-        'getMainCategoryOptions'
+        'getSubCategoryOptions'
     );
 
     public function doInit()
@@ -135,15 +135,15 @@ class PageController extends ContentController
         return $templateArr;
     }
 
-    public function getMainCategoryOptions()
+    public function getSubCategoryOptions()
     {
-        $tags = HappTag::get();
+        $tags = SecondaryTag::get();
         $optionsArr = [];
 
         foreach ($tags as $t)
         {
             $option = new stdClass();
-            $option->value=$t->ID;
+            $option->value=(string)$t->ID;
             $option->label=$t->Title;
             array_push($optionsArr, $option);
         }
